@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/turnaus2016.js"></script>
+
+    <title>Turnaus2016</title>
+</head>
+
+<body>
+
+    <div ng-app="myApp" ng-controller="turnaus">
+        <h1>Turnaus {{turnaus.vuosi()}}</h1>
+
+        Pvm: <input type="date" ng-model="turnaus.pvm"><br> 
+        <br> Pelipäivä: {{turnaus.pvm}}
+        <hr>
+
+        <div ng-repeat="sarja in turnaus.sarjat">
+            <h3> Sarja: {{sarja.nimi}}</h3>
+            <ol style="margin-left: 30px;">
+                <li ng-repeat="joukkue in sarja.joukkueet()">{{joukkue.nimi}}</li>
+            </ol>
+            <div style="margin-left: 30px;" ng-repeat="lohko in sarja.alkulohkot">
+                <h4> Alkulohko: {{lohko.nimi}}</h4>
+                Joukkueet:
+                
+                
+                
+                
+                <div ng-repeat="joukkue in lohko.joukkueet">
+                    <input ng-model="joukkue.nimi">
+                </div>   
+                
+                
+                
+                
+                Ottelut:
+                <ol style="margin-left: 60px;">
+                    <li ng-repeat="ottelu in lohko.ottelut">{{ottelu.koti.nimi}} - {{ottelu.vieras.nimi}}, tuomari: {{ottelu.tuomari.nimi}}    tulos: <input class="ottelutulos" ng-model="ottelu.tulos" ng-change="ottelu.onChange()"> {{ottelu.tulos}}</li>
+                </ol>
+            </div>
+            <div style="margin-left: 30px;" ng-repeat="lohko in sarja.sijoituslohkot">
+                <h4> Sijoituslohko: {{lohko.nimi}}</h4>
+            </div>
+            <hr>
+        </div> 
+
+        <hr>
+        {{asJson}}
+
+    </div>
+
+</body>
+
+</html>
