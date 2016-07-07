@@ -23,8 +23,22 @@
             <ol style="margin-left: 30px;">
                 <li ng-repeat="joukkue in sarja.joukkueet()">{{joukkue.nimi}}</li>
             </ol>
+
+            <div>
+                 <span ng-click="sarja.addAlkuLohko()">Luo alkulohko</span>
+                 <span ng-click="sarja.popAlkuLohko()">Poista alkulohko</span>  
+                 <span ng-click="sarja.addSijoitusLohko()">Luo sijoituslohko</span>  
+                 <span ng-click="sarja.popSijoitusLohko()">Poista sijoituslohko</span>  
+            </div>
+
             <div style="margin-left: 30px;" ng-repeat="lohko in sarja.alkulohkot">
                 <h4> Alkulohko: {{lohko.nimi}}</h4>
+
+                <div>
+                     <span ng-click="lohko.addJoukkue()">Luo joukkue</span>
+                     <span ng-click="lohko.popJoukkue()">Poista joukkue</span>  
+                </div>
+
                 Joukkueet:
                 
                 

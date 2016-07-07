@@ -29,6 +29,20 @@ var Sarja = function(nimi){
 
     this.alkulohkot = [];
     this.sijoituslohkot = [];
+
+    this.addAlkuLohko = function(){
+        this.alkulohkot.push(new Lohko("** lohkon nimi puuttuu **", []));
+    };
+    this.addSijoitusLohko = function(){
+        this.sijoituslohkot.push(new Lohko("** lohkon nimi puuttuu **", []));
+    };
+
+    this.popAlkuLohko = function(){
+        this.alkulohkot.pop();
+    };
+    this.popSijoitusLohko = function(){
+        this.sijoituslohkot.pop();
+    };
 };
 
 // Lohko
@@ -38,6 +52,14 @@ var Lohko = function(nimi, joukkueet){
     this.joukkueet = joukkueet;
 
     this.ottelut = [];
+
+    this.addJoukkue = function(){
+        this.joukkueet.push(new Joukkue("** joukkueen nimi puuttuu **"));
+    };
+
+    this.popJoukkue = function(){
+        this.joukkueet.pop();
+    };
 };
 
 // Ottelu
