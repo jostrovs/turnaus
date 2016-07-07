@@ -2,8 +2,6 @@
 
 Oma turnaushallintasofta
 
-Yritetty saada githubiin
+http-server
 
-Ja autentikointi järjestykseen
-
-..ja kokeillaan
+developer toolsissa disable cache

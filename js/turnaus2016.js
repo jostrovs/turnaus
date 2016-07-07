@@ -3,6 +3,15 @@ var app = angular.module('myApp', []);
 app.controller('turnaus', function($scope) {
     $scope.turnaus = luoTurnaus();
     $scope.asJson=JSON.stringify($scope.turnaus);
+})
+.directive('myJoukkue', function(){
+    return {
+        restrict: 'E',
+        scope: {
+            joukkue: '='
+        },
+        templateUrl: 'joukkue.html'
+    };
 });
 
 
