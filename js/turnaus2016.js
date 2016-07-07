@@ -1,7 +1,3 @@
-$(".ottelutulos").on
-
-var id=1;
-
 // Turnauksen yleisiä juttuja
 var app = angular.module('myApp', []);
 app.controller('turnaus', function($scope) {
