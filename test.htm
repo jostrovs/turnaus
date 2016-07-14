@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/turnaus2016.js"></script>
@@ -32,29 +33,7 @@
             </div>
 
             <div style="margin-left: 30px;" ng-repeat="lohko in sarja.alkulohkot">
-                <h4> Alkulohko: {{lohko.nimi}}</h4>
-
-                <div>
-                     <span ng-click="lohko.addJoukkue()">Luo joukkue</span>
-                     <span ng-click="lohko.popJoukkue()">Poista joukkue</span>  
-                </div>
-
-                Joukkueet:
-                
-                
-                
-                
-                <div ng-repeat="joukkue in lohko.joukkueet">
-                    <my-joukkue joukkue="joukkue"></my-joukkue>
-                </div>   
-                
-                
-                
-                
-                Ottelut:
-                <ol style="margin-left: 60px;">
-                    <li ng-repeat="ottelu in lohko.ottelut">{{ottelu.koti.nimi}} - {{ottelu.vieras.nimi}}, tuomari: {{ottelu.tuomari.nimi}}    tulos: <input class="ottelutulos" ng-model="ottelu.tulos" ng-change="ottelu.onChange()"> {{ottelu.tulos}}</li>
-                </ol>
+                <lohko-editori lohko="lohko"></lohko-editori>
             </div>
             <div style="margin-left: 30px;" ng-repeat="lohko in sarja.sijoituslohkot">
                 <h4> Sijoituslohko: {{lohko.nimi}}</h4>

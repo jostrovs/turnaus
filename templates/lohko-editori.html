@@ -1,0 +1,18 @@
+<!-- Lohko editori -->
+<h4> Alku/sijoituslohko: {{lohko.nimi}}</h4>
+
+<div>
+    <span ng-click="lohko.addJoukkue()">Luo joukkue</span>
+    <span ng-click="lohko.popJoukkue()">Poista joukkue</span>  
+</div>
+
+Joukkueet:
+
+<div ng-repeat="joukkue in lohko.joukkueet">
+    <joukkue-editori joukkue="joukkue"></joukkue-editori>
+</div>   
+
+Ottelut:
+<ol style="margin-left: 60px;">
+    <li ng-repeat="ottelu in lohko.ottelut">{{ottelu.koti.nimi}} - {{ottelu.vieras.nimi}}, tuomari: {{ottelu.tuomari.nimi}}    tulos: <input class="ottelutulos" ng-model="ottelu.tulos" ng-change="ottelu.onChange()"> {{ottelu.tulos}}</li>
+</ol>

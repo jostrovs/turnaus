@@ -4,16 +4,24 @@ app.controller('turnaus', function($scope) {
     $scope.turnaus = luoTurnaus();
     $scope.asJson=JSON.stringify($scope.turnaus);
 })
-.directive('myJoukkue', function(){
+.directive('joukkueEditori', function(){
     return {
         restrict: 'E',
         scope: {
             joukkue: '='
         },
-        templateUrl: 'joukkue.html'
+        templateUrl: 'templates/joukkue-editori.html'
+    };
+})
+.directive('lohkoEditori', function(){
+    return {
+        restrict: 'E',
+        scope: {
+            lohko: '='
+        },
+        templateUrl: 'templates/lohko-editori.html'
     };
 });
-
 
 
 // Turnaus
