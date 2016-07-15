@@ -7,6 +7,14 @@
     <script src="js/angular.min.js"></script>
     <script src="js/turnaus2016.js"></script>
 
+    <!-- Omat filet -->
+    <script src="js/classes/sarja.js"></script>
+    <script src="js/classes/lohko.js"></script>
+    <script src="js/classes/joukkue.js"></script>
+    <script src="js/classes/ottelu.js"></script>
+
+    <script src="js/classes/creation.js"></script>
+
     <title>Turnaus2016</title>
 </head>
 
@@ -22,25 +30,7 @@
         <hr>
 
         <div ng-repeat="sarja in turnaus.sarjat">
-            <h3> Sarja: {{sarja.nimi}}</h3>
-            <ol style="margin-left: 30px;">
-                <li ng-repeat="joukkue in sarja.joukkueet()">{{joukkue.nimi}}</li>
-            </ol>
-
-            <div>
-                 <span ng-click="sarja.addAlkuLohko()">Luo alkulohko</span>
-                 <span ng-click="sarja.popAlkuLohko()">Poista alkulohko</span>  
-                 <span ng-click="sarja.addSijoitusLohko()">Luo sijoituslohko</span>  
-                 <span ng-click="sarja.popSijoitusLohko()">Poista sijoituslohko</span>  
-            </div>
-
-            <div style="margin-left: 30px;" ng-repeat="lohko in sarja.alkulohkot">
-                <lohko-editori lohko="lohko"></lohko-editori>
-            </div>
-            <div style="margin-left: 30px;" ng-repeat="lohko in sarja.sijoituslohkot">
-                <h4> Sijoituslohko: {{lohko.nimi}}</h4>
-            </div>
-            <hr>
+            <sarja-editori sarja="sarja"></sarja-editori>
         </div> 
 
         <hr>
