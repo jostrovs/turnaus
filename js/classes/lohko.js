@@ -17,15 +17,9 @@ var Lohko = function(nimi, joukkueet, roundRobin){
     };
 
     this.laskeTulokset = function(){
+        this.tulostaulu = new Tulostaulu(this);
         console.log("Lasken tulokset lohkolle " + this.nimi);
     };
 
-    this.tulostaulu=`
-        ------------------
-        1. Ekana kana
-        2. Tokana takana
-        3. Kolkkana kelkka
-        4. Nelkkänä telkkä
-        ------------------
-    `;
+    this.tulostaulu=new Tulostaulu(this);
 };

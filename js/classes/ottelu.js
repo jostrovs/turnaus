@@ -26,6 +26,7 @@ var Ottelu = function(koti, vieras, tuomari, tulos){
             kotivoitto: 0,
             vierasvoitto: 0
         };
+        let tulos = this.tulos;
         if (tulos == null || tulos.length < 3) return a;
         a.kotierat = parseInt(tulos.charAt(0));
         a.vieraserat = parseInt(tulos.charAt(2));

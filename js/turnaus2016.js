@@ -40,7 +40,15 @@ app.controller('turnaus', function($scope) {
         templateUrl: 'templates/ottelu-editori.html'
     };
 })
-.directive('lohkoEditori', function(){
+.directive('tulostauluEditori', function(){
+    return {
+        restrict: 'E',
+        scope: {
+            tulostaulu: '='
+        },
+        templateUrl: 'templates/tulostaulu-editori.html'
+    };
+}).directive('lohkoEditori', function(){
     return {
         restrict: 'E',
         scope: {
