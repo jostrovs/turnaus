@@ -4,12 +4,13 @@
     <div class="tulostauluRivit">
         <h5>Tulokset:</h5>
         <table style="margin-left: 60px;">
-            <tr><th>Sija</th><th>Joukkue</th><th>Erät</th><th>Piste-ero</th></tr>
+            <tr><th>Sija</th><th>Joukkue</th><th>Ottelut</th><th>Erät</th><th>Piste-ero</th></tr>
             <tr ng-repeat="rivi in tulostaulu.rivit">
                 <td>Sija</td>
                 <td>{{rivi.joukkue.nimi}}</td>
-                <td>{{rivi.erat}}</td>
-                <td>{{rivi.ero}}</td>
+                <td>{{rivi.ottelut}}</td>
+                <td>{{rivi.eraplus}}</td>
+                <td>{{rivi.pisteet}}</td>
             </tr>    
         
         </table>

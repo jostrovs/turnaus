@@ -3,7 +3,7 @@ var Tulostaulu = function(lohko){
     this.rivit = [];
     
     for(let joukkue of lohko.joukkueet){
-        var rivi = new Rivi(joukkue);
+        let rivi = new Rivi(joukkue);
 
         for(let ottelu of lohko.ottelut){
             if(ottelu.koti != joukkue && ottelu.vieras != joukkue) continue;
@@ -16,23 +16,20 @@ var Tulostaulu = function(lohko){
 
         this.rivit.push(rivi);
     }
-
-    this.rivit.push(new Rivi(new Joukkue("abc", "def")));
-
 };
 
 // Rivi
 var Rivi = function(joukkue){
     this.joukkue = joukkue;
-    this.nimi ="iij";
+    this.nimi =joukkue.nimi;
     this.ottelut=0;
     this.voitot =0;
     this.tappiot =0;
     this.ero=0;
 
     this.erat = 0;
-    this.eräplus = 0;
-    this.eräminus = 0;
+    this.eraplus = 0;
+    this.eraminus = 0;
 
     this.pisteet = 0;
     this.pisteplus = 0;
@@ -49,11 +46,11 @@ var Rivi = function(joukkue){
         //  ero: 0,
         //  kotivoitto: 0,
         //  vierasvoitto: 0
-        this.ottelut++;
+        if(tulos.kotierat + tulos.vieraserat > 0) this.ottelut++;
 
         this.erat += tulos.kotierat - tulos.vieraserat;
-        this.eräplus += tulos.kotierat;
-        this.eräminus += tulos.vieraserat;
+        this.eraplus += tulos.kotierat;
+        this.eraminus += tulos.vieraserat;
 
         for(let kp of tulos.kotipisteet){
             let kotipisteet = parseInt(kp, 10);
@@ -68,11 +65,9 @@ var Rivi = function(joukkue){
         
         if(tulos.kotivoitto > 0){
              this.voitot++;
-             this.ero++;
         }
         if(tulos.vierasvoitto > 0){
              this.tappiot++;
-             this.ero--;
         }
     };
     this.addVieras = function(tulos){
@@ -85,11 +80,11 @@ var Rivi = function(joukkue){
         //  kotivoitto: 0,
         //  vierasvoitto: 0
 
-        this.ottelut++;
+        if(tulos.kotierat + tulos.vieraserat > 0) this.ottelut++;
 
         this.erat += tulos.vieraserat - tulos.kotierat;
-        this.eräplus += tulos.vieraserat;
-        this.eräminus += tulos.kotierat;
+        this.eraplus += tulos.vieraserat;
+        this.eraminus += tulos.kotierat;
 
         for(let kp of tulos.kotipisteet){
             let kotipisteet = parseInt(kp, 10);
@@ -104,11 +99,9 @@ var Rivi = function(joukkue){
         
         if(tulos.kotivoitto > 0){
              this.tappiot++;
-             this.ero--;
         }
         if(tulos.vierasvoitto > 0){
              this.voitot++;
-             this.ero++;
         }
     };
 };

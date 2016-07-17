@@ -13,23 +13,24 @@ my-joukkue > input {
 
 .lohko {
     background-color: #eef;
-    padding: 20px;
+    padding-left: 20px;
+    padding-top: 15px;
    
 }
 
 .joukkueet {
     background-color: #ddd;
-    padding: 20px;
+    padding: 10px 10px;
 }
 
 .ottelut {
     background-color: #ffd;
-    padding: 20px;
+    padding: 10px;
 }
 
 .tulostaulu {
     background-color: #dfd;
-    padding: 20px;
+    padding: 10px;
 }
 
 .button {
@@ -50,4 +51,16 @@ my-joukkue > input {
 .buttonRemove {
     background-color: indianred;
     color: darkred;
+}
+
+.changed {
+    margin-left: 3px;
+    padding: 3px;
+    border: 1px solid #ca4;
+    border-radius: 3px;
+    background-color: yellow;
+    color: #210;
+    vertical-align: middle;
+
+    font-size: xx-small;
 }

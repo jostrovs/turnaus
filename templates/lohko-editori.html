@@ -6,14 +6,15 @@
     <div class="joukkueet">
         <h5>Joukkueet:</h5>
 
+        <div style="margin-bottom: 10px;">
+            <span class="button buttonAdd" ng-click="lohko.addJoukkue()"> Lisää </span> &nbsp;
+            <span class="button buttonRemove" ng-click="lohko.popJoukkue()"> Poista </span>
+        </div>
+
         <div ng-repeat="joukkue in lohko.joukkueet">
             <joukkue-editori joukkue="joukkue"></joukkue-editori>
         </div>
 
-        <div style="margin-top: 14px;">
-            <span class="button buttonAdd" ng-click="lohko.addJoukkue()"> Lisää </span> &nbsp;
-            <span class="button buttonRemove" ng-click="lohko.popJoukkue()"> Poista </span>
-        </div>
     </div>
 
     <div class="ottelut">
@@ -27,7 +28,7 @@
 
     <div class="tulostaulu">
         <h5>Tulokset:</h5>
-        <span class="button buttonAdd" ng-click="lohko.laskeTulokset()"> Laske tulokset </span>
-            <tulostaulu-editori tulostaulu="lohko.tulostaulu"></tulostaulu-editori>
+        <span class="button buttonAdd" ng-click="lohko.laskeTulokset()" ng-show="lohko.onMuuttunut()"> Laske tulokset </span>
+        <tulostaulu-editori tulostaulu="lohko.tulostaulu"></tulostaulu-editori>
     </div>
 </div>

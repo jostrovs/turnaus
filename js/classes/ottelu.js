@@ -13,6 +13,9 @@ var Ottelu = function(koti, vieras, tuomari, tulos){
         this.viimeksiLuettuTulos = this.tulos;
         return this.tulos;
     };
+    this.onMuuttunut = function(){
+        return this.viimeksiLuettuTulos !== this.tulos;
+    };
 
     this.parseTulos = function () {
         // parseTulos lukee "2-0 (25-23, 26-24)" -muodossa olevan tuloksen.
@@ -26,7 +29,7 @@ var Ottelu = function(koti, vieras, tuomari, tulos){
             kotivoitto: 0,
             vierasvoitto: 0
         };
-        let tulos = this.tulos;
+        let tulos = this.lueTulos();
         if (tulos == null || tulos.length < 3) return a;
         a.kotierat = parseInt(tulos.charAt(0));
         a.vieraserat = parseInt(tulos.charAt(2));

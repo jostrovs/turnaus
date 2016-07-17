@@ -22,4 +22,11 @@ var Lohko = function(nimi, joukkueet, roundRobin){
     };
 
     this.tulostaulu=new Tulostaulu(this);
+
+    this.onMuuttunut = function(){
+        for(let ottelu of this.ottelut){
+            if(ottelu.onMuuttunut()) return true;
+        }
+        return false;
+    }
 };
