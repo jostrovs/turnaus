@@ -31,15 +31,6 @@ app.controller('turnaus', function($scope) {
         templateUrl: 'templates/joukkue-view.html'
     };
 })
-.directive('otteluEditori', function(){
-    return {
-        restrict: 'E',
-        scope: {
-            ottelu: '='
-        },
-        templateUrl: 'templates/ottelu-editori.html'
-    };
-})
 .directive('tulostauluEditori', function(){
     return {
         restrict: 'E',

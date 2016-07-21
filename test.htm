@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -18,24 +18,26 @@
 
     <title>Turnaus2016</title>
 </head>
- 
-<body>
 
-    <div ng-app="myApp" ng-controller="turnaus">
+<body ng-app="myApp" ng-controller="turnaus">
+    <ul class="navigaattori">
+        <li class="navitem" ng-repeat="sarja in turnaus.sarjat"><a href="#{{sarja.lyhenne}}">{{sarja.lyhenne}}</a></li>
+    </ul>
+
+    <div class="container-fluid">
         <h1>Turnaus {{turnaus.vuosi()}}</h1>
 
-        <h1 style="padding: 40px; background-color: salmon; color: red; border: 2px solid dark-red;">MUISTA KÄYNNISTÄÄ HTTP-SERVER CHROMELLA!</h1>
+        <h1 style="padding: 40px; background-color: salmon; color: red; border: 2px solid dark-red;">Tee luokka toggleable, joka muuttaa myös tyyliä samalla</h1>
 
-        Pvm: <input type="date" ng-model="turnaus.pvm"><br> 
+        Pvm: <input type="date" ng-model="turnaus.pvm"><br>
         <br> Pelipäivä: {{turnaus.pvm}}
         <hr>
 
         <div ng-repeat="sarja in turnaus.sarjat">
             <sarja-editori sarja="sarja"></sarja-editori>
-        </div> 
+        </div>
 
-        <hr>
-        {{asJson}}
+        <hr> {{asJson}}
 
     </div>
 

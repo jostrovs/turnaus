@@ -64,3 +64,37 @@ my-joukkue > input {
 
     font-size: xx-small;
 }
+
+.ottelu-editor-solu {
+    padding: 3px 2px;
+}
+
+
+
+
+/* NAVIGAATTORI */
+.navigaattori {
+    position: fixed;
+    top: -14px;
+    right: 0px;
+    padding: 0px;
+    
+    background-color: darkgray;
+    display: inline;
+}
+
+.navigaattori > li{
+    display: inline;
+    padding: 6px;
+}
+
+.navigaattori a:link, a:visited {
+    color: white;
+    text-decoration: none;
+        padding: 6px;
+}
+.navigaattori a:hover {
+    color: yellow;
+    background-color: blue;
+       padding: 6px;
+}

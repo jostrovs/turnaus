@@ -4,16 +4,16 @@
 var luoTurnaus = function(){
     let turnaus = new Turnaus();
     turnaus.pvm = new Date(2017, 0, 5, 0, 0, 0);
-    turnaus.sarjat.push(luoSarja('Miehet A'));
-    turnaus.sarjat.push(luoSarja('Miehet B'));
-    turnaus.sarjat.push(luoSarja('Miehet C'));
-    turnaus.sarjat.push(luoSarja('Naiset A'));
-    turnaus.sarjat.push(luoSarja('Naiset B'));
+    turnaus.sarjat.push(luoSarja('Miehet A', 'MA'));
+    turnaus.sarjat.push(luoSarja('Miehet B', 'MB'));
+    turnaus.sarjat.push(luoSarja('Miehet C', 'MC'));
+    turnaus.sarjat.push(luoSarja('Naiset A', 'NA'));
+    turnaus.sarjat.push(luoSarja('Naiset B', 'NB'));
     return turnaus;
 };
 
-var luoSarja = function(nimi){
-    var sarja = new Sarja(nimi);
+var luoSarja = function(nimi, lyhenne){
+    var sarja = new Sarja(nimi, lyhenne);
 
     var joukkueet = [];
     joukkueet.push(new Joukkue("Malmin Urheilijat", "MU"));

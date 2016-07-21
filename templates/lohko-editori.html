@@ -1,34 +1,57 @@
 <!-- Lohko editori -->
 <div class="lohko">
 
-    <h4> Alku/sijoituslohko: {{lohko.nimi}}</h4>
+    <h4 ng-click="lohko.toggle()"> Alku/sijoituslohko: {{lohko.nimi}}</h4>
 
-    <div class="joukkueet">
-        <h5>Joukkueet:</h5>
+    <div id="{{lohko.id}}" style="display:none">
 
-        <div style="margin-bottom: 10px;">
-            <span class="button buttonAdd" ng-click="lohko.addJoukkue()"> Lisää </span> &nbsp;
-            <span class="button buttonRemove" ng-click="lohko.popJoukkue()"> Poista </span>
+        <div class="joukkueet">
+            <h5>Joukkueet:</h5>
+
+            <div style="margin-bottom: 10px;">
+                <span class="button buttonAdd" ng-click="lohko.addJoukkue()"> Lisää </span> &nbsp;
+                <span class="button buttonRemove" ng-click="lohko.popJoukkue()"> Poista </span>
+            </div>
+
+            <div ng-repeat="joukkue in lohko.joukkueet">
+                <joukkue-editori joukkue="joukkue"></joukkue-editori>
+            </div>
+
         </div>
 
-        <div ng-repeat="joukkue in lohko.joukkueet">
-            <joukkue-editori joukkue="joukkue"></joukkue-editori>
+        <div class="ottelut">
+            <h5>Ottelut:</h5>
+            <table border=1 cellspacing=0>
+                <tr>
+                    <th>No</th>
+                    <th>Koti</th>
+                    <th>-</th>
+                    <th>Vieras</th>
+                    <th>Tuomari</th>
+                    <th>Tulos</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="ottelu in lohko.ottelut">
+                    <td class="ottelu-editor-solu">{{ottelu.no}}</td>
+                    <td class="ottelu-editor-solu">{{ottelu.koti.nimi}}</td>
+                    <td class="ottelu-editor-solu">-</td>
+                    <td class="ottelu-editor-solu">{{ottelu.vieras.nimi}}</td>
+                    <td class="ottelu-editor-solu">{{ottelu.tuomari.nimi}}</td>
+                    <td class="ottelu-editor-solu">
+                        <input class="ottelutulos" ng-model="ottelu.tulos" ng-change="ottelu.onChange()">
+                        <span class="changed" ng-show="ottelu.onMuuttunut()">
+                         Muuttunut
+                    </span>
+                    </td>
+                    <td class="ottelu-editor-solu">{{ottelu.tulos}}</td>
+                </tr>
+            </table>
+
         </div>
 
-    </div>
-
-    <div class="ottelut">
-        <h5>Ottelut:</h5>
-        <ol style="margin-left: 60px;">
-            <li ng-repeat="ottelu in lohko.ottelut">
-                <ottelu-editori ottelu="ottelu"></ottelu-editori>
-            </li>
-        </ol>
-    </div>
-
-    <div class="tulostaulu">
-        <h5>Tulokset:</h5>
-        <span class="button buttonAdd" ng-click="lohko.laskeTulokset()" ng-show="lohko.onMuuttunut()"> Laske tulokset </span>
-        <tulostaulu-editori tulostaulu="lohko.tulostaulu"></tulostaulu-editori>
+        <div class="tulostaulu">
+            <span class="button buttonAdd" ng-click="lohko.laskeTulokset()" ng-show="lohko.onMuuttunut()"> Laske tulokset </span>
+            <tulostaulu-editori tulostaulu="lohko.tulostaulu"></tulostaulu-editori>
+        </div>
     </div>
 </div>

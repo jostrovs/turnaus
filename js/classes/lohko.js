@@ -1,5 +1,14 @@
 // Lohko
+
+var id=1;
+
 var Lohko = function(nimi, joukkueet, roundRobin){
+    this.id="lohko" + (id++).toString();
+
+    this.toggle=function(){
+        $("#" + this.id).toggle();
+    }
+
     this.nimi = nimi;
 
     this.roundRobin = roundRobin;

@@ -1,24 +1,29 @@
 <!-- Sarja -->
 
-<h3> Sarja: {{sarja.nimi}}</h3>
-<ol style="margin-left: 30px;">
-    <li ng-repeat="joukkue in sarja.joukkueet()">
-        <joukkue-view joukkue="joukkue"></joukkue-view>
-    </li>
-</ol>
+<a name="{{sarja.lyhenne}}"></a>
+<h3 ng-click="sarja.toggle()"> Sarja: {{sarja.nimi}} ({{sarja.lyhenne}})</h3>
 
-<div>
-        <span ng-click="sarja.addAlkuLohko()">Luo alkulohko</span>
-        <span ng-click="sarja.popAlkuLohko()">Poista alkulohko</span>  
-        <span ng-click="sarja.addSijoitusLohko()">Luo sijoituslohko</span>  
-        <span ng-click="sarja.popSijoitusLohko()">Poista sijoituslohko</span>  
-</div>
+<div style="margin-left: 30px; display:none;" id="{{sarja.id}}">
 
-<div style="margin-left: 30px;" ng-repeat="lohko in sarja.alkulohkot">
-    <lohko-editori lohko="lohko"></lohko-editori>
-    <hr>
-</div>
-<div style="margin-left: 30px;" ng-repeat="lohko in sarja.sijoituslohkot">
-    <h4> Sijoituslohko: {{lohko.nimi}}</h4>
+    <ol>
+        <li ng-repeat="joukkue in sarja.joukkueet()">
+            <joukkue-view joukkue="joukkue"></joukkue-view>
+        </li>
+    </ol>
+
+    <div>
+        <span class="button buttonAdd" ng-click="sarja.addAlkuLohko()">Luo alkulohko</span>
+        <span class="button buttonRemove" ng-click="sarja.popAlkuLohko()">Poista alkulohko</span>
+        <span class="button buttonAdd" ng-click="sarja.addSijoitusLohko()">Luo sijoituslohko</span>
+        <span class="button buttonRemove" ng-click="sarja.popSijoitusLohko()">Poista sijoituslohko</span>
+    </div>
+
+    <div ng-repeat="lohko in sarja.alkulohkot">
+        <lohko-editori lohko="lohko"></lohko-editori>
+        <hr>
+    </div>
+    <div ng-repeat="lohko in sarja.sijoituslohkot">
+        <h4> Sijoituslohko: {{lohko.nimi}}</h4>
+    </div>
 </div>
 <hr>

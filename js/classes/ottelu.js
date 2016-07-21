@@ -1,5 +1,9 @@
 // Ottelu
+
+var no = 1;
+
 var Ottelu = function(koti, vieras, tuomari, tulos){
+    this.no = no++;
     this.koti = koti;
     this.vieras = vieras;
     this.tuomari = tuomari;
