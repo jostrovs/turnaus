@@ -1,12 +1,13 @@
 <!-- Lohko editori -->
 <div class="lohko">
 
-    <h4 ng-click="lohko.toggle()"> Alku/sijoituslohko: {{lohko.nimi}}</h4>
+    <h4> Alku/sijoituslohko: {{lohko.nimi}}</h4>
+    <!--<h4 ng-click="lohko.toggle()"> Alku/sijoituslohko: {{lohko.nimi}}</h4>-->
 
-    <div id="{{lohko.id}}" style="display:none">
+    <div class="jj-toggle" style="display:none">
 
-        <div class="joukkueet">
-            <h5>Joukkueet:</h5>
+        <h5>Joukkueet:</h5>
+        <div class="jj-toggle joukkueet">
 
             <div style="margin-bottom: 10px;">
                 <span class="button buttonAdd" ng-click="lohko.addJoukkue()"> Lisää </span> &nbsp;
@@ -19,8 +20,8 @@
 
         </div>
 
-        <div class="ottelut">
-            <h5>Ottelut:</h5>
+        <h5>Ottelut:</h5>
+        <div class="jj-toggle ottelut">
             <table border=1 cellspacing=0>
                 <tr>
                     <th>No</th>
@@ -55,3 +56,4 @@
         </div>
     </div>
 </div>
+<script>$("#lohko2").jjToggleable();</script>

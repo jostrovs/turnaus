@@ -1,0 +1,20 @@
+.jj-toggle-show{
+   background-color: lightgreen;
+   color: darkgreen;
+   border: 1px solid green;
+   font-size: 12px;
+   padding: 2px 4px;   
+   cursor: pointer;  
+   margin-left: 5px;
+}
+
+.jj-toggle-hide{
+   background-color: pink;
+   color: darkred;
+   border: 1px solid red;     
+   font-size: 12px;
+   padding: 2px 4px;
+   position: top;  
+   cursor: pointer; 
+   margin-left: 5px;  
+}

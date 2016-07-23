@@ -1,15 +1,7 @@
 // Sarja
-var id=1;
-
 var Sarja = function(nimi, lyhenne){
     this.nimi = nimi;
     this.lyhenne = lyhenne;
-    
-    this.id="sarja" + (id++).toString();
-
-    this.toggle=function(){
-        $("#" + this.id).toggle();
-    }
 
     this.joukkueet = function(){
         var ret = [];

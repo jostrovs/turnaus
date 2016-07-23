@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/jj.css">
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/turnaus2016.js"></script>
@@ -15,6 +16,7 @@
     <script src="js/classes/tulostaulu.js"></script>
 
     <script src="js/classes/creation.js"></script>
+    <script src="js/jj.js"></script>
 
     <title>Turnaus2016</title>
 </head>
@@ -27,7 +29,7 @@
     <div class="container-fluid">
         <h1>Turnaus {{turnaus.vuosi()}}</h1>
 
-        <h1 style="padding: 40px; background-color: salmon; color: red; border: 2px solid dark-red;">Tee luokka toggleable, joka muuttaa myös tyyliä samalla</h1>
+        <h1 style="padding: 40px; background-color: salmon; color: red; border: 2px solid dark-red;">Tee toggleable-luokista versiot, joilla voi valita suoraan kiinni/auki ja indikaattorit päällä/pois</h1>
 
         Pvm: <input type="date" ng-model="turnaus.pvm"><br>
         <br> Pelipäivä: {{turnaus.pvm}}

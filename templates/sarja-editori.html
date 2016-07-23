@@ -1,9 +1,9 @@
 <!-- Sarja -->
 
 <a name="{{sarja.lyhenne}}"></a>
-<h3 ng-click="sarja.toggle()"> Sarja: {{sarja.nimi}} ({{sarja.lyhenne}})</h3>
+<h3> Sarja: {{sarja.nimi}} ({{sarja.lyhenne}})</h3>
 
-<div style="margin-left: 30px; display:none;" id="{{sarja.id}}">
+<div class="jj-toggle" style="margin-left: 30px; display:none;">
 
     <ol>
         <li ng-repeat="joukkue in sarja.joukkueet()">
