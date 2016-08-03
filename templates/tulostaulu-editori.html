@@ -2,11 +2,12 @@
 <div class="tulostaulu">
 
     <h5>Tulokset:</h5>
+
     <div class="jj-toggle tulostauluRivit">
         <table style="margin-left: 60px;">
             <tr><th>Sija</th><th>Joukkue</th><th>Ottelut</th><th>Erät</th><th>Piste-ero</th></tr>
-            <tr ng-repeat="rivi in tulostaulu.rivit">
-                <td>Sija</td>
+            <tr ng-repeat="rivi in tulostaulu.rivit | orderBy:'sija'" >
+                <td><input type="number" style="width: 30px;" ng-model="rivi.sija"></td>
                 <td>{{rivi.joukkue.nimi}}</td>
                 <td>{{rivi.ottelut}}</td>
                 <td>{{rivi.eraplus}}</td>
@@ -14,6 +15,7 @@
             </tr>    
         
         </table>
+        <textarea ng-model="tulostaulu.selitys"  style="margin-left: 60px; width: 650px;"></textarea>
     </div>
 
 </div>

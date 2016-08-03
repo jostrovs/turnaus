@@ -98,9 +98,9 @@
 
 var jj_init = function(){
         $(".jj-toggle").each(function (index) {
-            $(this).jjToggleable();
+            $(this).jjToggleable({hideOnStart: false});
         });
         $(".jj-toggle-next").each(function (index) {
-            $(this).jjNextToggleable();
+            $(this).jjNextToggleable({hideOnStart: false});
         });
 };

@@ -4,7 +4,7 @@
     <h4> Alku/sijoituslohko: {{lohko.nimi}}</h4>
     <!--<h4 ng-click="lohko.toggle()"> Alku/sijoituslohko: {{lohko.nimi}}</h4>-->
 
-    <div class="jj-toggle" style="display:none">
+    <div class="jj-toggle">
 
         <h5>Joukkueet:</h5>
         <div class="jj-toggle joukkueet">
@@ -32,8 +32,8 @@
                     <th>Tulos</th>
                     <th></th>
                 </tr>
-                <tr ng-repeat="ottelu in lohko.ottelut">
-                    <td class="ottelu-editor-solu">{{ottelu.no}}</td>
+                <tr ng-repeat="ottelu in lohko.ottelut | orderBy:'no'">
+                    <td class="ottelu-editor-solu"><input type="number" ng-model="ottelu.no" style="width: 30px;"></td>
                     <td class="ottelu-editor-solu">{{ottelu.koti.nimi}}</td>
                     <td class="ottelu-editor-solu">-</td>
                     <td class="ottelu-editor-solu">{{ottelu.vieras.nimi}}</td>
@@ -51,7 +51,7 @@
         </div>
 
         <div class="tulostaulu">
-            <span class="button buttonAdd" ng-click="lohko.laskeTulokset()" ng-show="lohko.onMuuttunut()"> Laske tulokset </span>
+            <span class="button buttonAdd" ng-click="lohko.laskeTulokset()"> Laske tulokset </span>
             <tulostaulu-editori tulostaulu="lohko.tulostaulu"></tulostaulu-editori>
         </div>
     </div>

@@ -10,6 +10,9 @@ my-joukkue > input {
     font-size: x-small;
 
 }
+.sarja {
+    background-color: #ffa;
+}
 
 .lohko {
     background-color: #eef;
