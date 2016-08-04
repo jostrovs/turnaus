@@ -35,10 +35,9 @@ var luoSarja = function (nimi, lyhenne) {
     return sarja;
 };
 
-var luoLohko = function (nimi, joukkueet, otteluFunktio) {
-    var lohko = new Lohko(nimi, joukkueet);
+var luoLohko = function (name, joukkueet, otteluFunktio) {
+    var lohko = new Lohko(name, joukkueet);
     lohko.ottelut = otteluFunktio(joukkueet);
-    lohko.laskeTulokset();
     return lohko;
 };
 
@@ -80,4 +79,57 @@ var luoRoundRobin = function (joukkueet) {
 
     return ret;
 };
+
+var arvoTulos = function(raja=0.5, erat=2, voittoerat=true){
+    let kotierat = 0;
+    let vieraserat = 0;
+
+    let tulos = [];
+
+    if(voittoerat){
+        while(kotierat < erat && vieraserat < erat){
+            let katto = 25;
+            if(kotierat == erat-1 && vieraserat == erat-1) katto = 15; // Tie break
+           
+            let era = arvoEra(raja, katto);
+            tulos.push(era);
+            if(era.koti > era.vieras) kotierat++;
+            else vieraserat++;
+        }
+    }
+    else {
+        let n=0;
+        while(n++ < erat){
+            let katto = 25;
+            let era = arvoEra(raja, katto);
+            tulos.push(era);
+            if(era.koti > era.vieras) kotierat++;
+            else vieraserat++;
+        }
+    }
+
+    // Muotoillaan vielä tulos
+    let ret = kotierat.toString() + "-" + vieraserat.toString() + " (";
+    let isFirst = true;
+    for(let era of tulos){
+        if(isFirst) isFirst = false;
+        else ret += ", ";
+        ret += era.koti.toString() + "-" + era.vieras.toString() 
+    }
+    ret += ")";
+
+    return ret;
+};
+
+var arvoEra = function(raja=0.5, katto=25, ero=2){
+    let koti = 0;
+    let vieras = 0;
+
+    while(!((koti >= katto || vieras >= katto) && Math.abs(koti-vieras)>=ero)){
+        let rand = Math.random();
+        if(rand <= raja) koti++;
+        else vieras++;
+    }
+    return { koti: koti, vieras: vieras};
+}
 

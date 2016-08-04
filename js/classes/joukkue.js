@@ -2,13 +2,17 @@
 
 var Joukkue = function(nimi, lyhenne){
     this.nimi = nimi;
-    this.lyhenne = lyhenne;
+    this._lyh = lyhenne;
+    this.lyhenne = ""; // Tämä on vain getteri
 
     this.getNimi=function(){
         return nimi;
     };
 
     this.showLyhenne=function(){
-        return this.lyhenne != undefined && this.nimi !== this.lyhenne;
+        return this._lyh != undefined && this.nimi !== this._lyh;
     }
+
+    if(this.showLyhenne()) this.lyhenne = this._lyh;
+    else this.lyhenne = this.nimi;
 };

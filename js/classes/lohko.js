@@ -1,6 +1,6 @@
 // Lohko
 
-var Lohko = function(nimi, joukkueet, roundRobin){
+function Lohko(nimi, joukkueet, roundRobin){
     this.nimi = nimi;
 
     this.roundRobin = roundRobin;
@@ -29,5 +29,36 @@ var Lohko = function(nimi, joukkueet, roundRobin){
             if(ottelu.onMuuttunut()) return true;
         }
         return false;
+    }
+
+    this.arvoYksiTulos = function(){
+        for(let ottelu of this.ottelut){
+            if(ottelu.tulos == undefined || ottelu.tulos.length < 1){
+                ottelu.tulos = arvoTulos(0.499);
+                ottelu.onChange();
+                return;
+            }
+        }
+    }
+
+    this.arvoKaikkiTulokset = function(){
+        for(let ottelu of this.ottelut){
+            ottelu.tulos = arvoTulos(0.499, 2, /* voittoerät */ false);
+            ottelu.onChange();
+        }
+    }
+
+    this.poistaOttelut = function(){
+        this.ottelut = [];
+    }
+
+    this.luoOttelut = function(){
+        this.ottelut = luoRoundRobin(this.joukkueet);
+    }
+
+    this.numeroiOttelut = function(seed=1){
+        // Numeroidaan kaikki ottelut uudelleen
+        for(let ottelu of this.ottelut) ottelu.no = seed++;
+        return seed;
     }
 };

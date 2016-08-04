@@ -33,6 +33,11 @@
 
         Pvm: <input type="date" ng-model="turnaus.pvm"><br>
         <br> Pelipäivä: {{turnaus.pvm}}
+
+            <div style="margin-top: 15px; margin-bottom: 15px;">
+                <span class="button buttonAdd" ng-click="turnaus.numeroiOttelut()"> Numeroi ottelut uudelleen </span>
+            </div>
+        
         <hr>
 
         <div ng-repeat="sarja in turnaus.sarjat">

@@ -9,7 +9,12 @@ var Ottelu = function(koti, vieras, tuomari, tulos){
     this.tuomari = tuomari;
     this.tulos = tulos;
     this.onChange = function(){
+        let t = this.tulos.toString();
         this.tulos = pikasyote(this.tulos);
+
+        let tulos = this.parseTulos(/* markRead */ false);
+        this.ero = tulos.ero.toString();
+        if(tulos.ero > 0) this.ero = "+" + this.ero;
     }
 
     this.viimeksiLuettuTulos = tulos; // Tällä kontrolloidaan sitä, onko lohkon tuloslista ajan tasalla vai ei
@@ -21,7 +26,7 @@ var Ottelu = function(koti, vieras, tuomari, tulos){
         return this.viimeksiLuettuTulos !== this.tulos;
     };
 
-    this.parseTulos = function () {
+    this.parseTulos = function (markRead=true) { // MarkRead: merkitäänkö ottelun tulos luetuksi
         // parseTulos lukee "2-0 (25-23, 26-24)" -muodossa olevan tuloksen.
         var a = {
             kotierat: 0,
@@ -33,7 +38,14 @@ var Ottelu = function(koti, vieras, tuomari, tulos){
             kotivoitto: 0,
             vierasvoitto: 0
         };
-        let tulos = this.lueTulos();
+        
+        let tulos ="";
+        if(markRead){
+            tulos = this.lueTulos();
+        } else {
+            tulos = this.tulos;
+        }
+
         if (tulos == null || tulos.length < 3) return a;
         a.kotierat = parseInt(tulos.charAt(0));
         a.vieraserat = parseInt(tulos.charAt(2));

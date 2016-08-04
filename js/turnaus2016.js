@@ -86,4 +86,10 @@ var Turnaus = function(){
     }
 
     this.sarjat = [];
+
+    this.numeroiOttelut = function(){
+        // Numeroidaan kaikki ottelut uudelleen
+        let no = 1;
+        for(let sarja of this.sarjat) no = sarja.numeroiOttelut(no);
+    }
 };
