@@ -1,19 +1,23 @@
 <!-- Sarja -->
 
-<a name="{{sarja.lyhenne}}"></a>
-<h3> Sarja: {{sarja.nimi}} ({{sarja.lyhenne}})</h3>
+<div class="sarja-container">
 
-<div class="jj-toggle sarja">
+    <a name="{{sarja.lyhenne}}"></a>
+    <h3> Sarja: {{sarja.nimi}} ({{sarja.lyhenne}})</h3>
 
-    <div style="margin-left: 30px;">
+    <div class="jj-toggle sarja">
 
-        <ol>
-            <li ng-repeat="joukkue in sarja.joukkueet()">
-                <joukkue-view joukkue="joukkue"></joukkue-view>
-            </li>
-        </ol>
-
-        <div>
+        <div class="sarja-joukkueet">
+            <div>Sarjan joukkueet:</div>
+            <div class="jj-toggle">
+                <ol>
+                    <li ng-repeat="joukkue in sarja.joukkueet()">
+                        <joukkue-view joukkue="joukkue"></joukkue-view>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="toolbar">
             <span class="button buttonAdd" ng-click="sarja.addAlkuLohko()">Luo alkulohko</span>
             <span class="button buttonRemove" ng-click="sarja.popAlkuLohko()">Poista alkulohko</span>
             <span class="button buttonAdd" ng-click="sarja.addSijoitusLohko()">Luo sijoituslohko</span>
@@ -30,4 +34,5 @@
 
     </div>
 </div>
+
 <hr>

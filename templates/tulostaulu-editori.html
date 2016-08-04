@@ -1,35 +1,31 @@
 <!-- Tulostaulu editori -->
-<div class="tulostaulu">
-
-    <h5>Tulokset:
-    </h5>
+<h5>Tulokset:
+</h5>
 
 
-    <div class="jj-toggle tulostauluRivit" style="margin-left: 60px;">
+<div class="jj-toggle tulostauluRivit" style="margin-left: 60px;">
 
-        <div style="margin-top: 15px; margin-bottom: 15px;">
-            <span class="button buttonAdd" ng-click="tulostaulu.laskeUudestaan()"> Laske tulokset </span>
-        </div>
-        <table border=1>
-            <tr>
-                <th>Sija</th>
-                <th>Joukkue</th>
-                <!--<th>Pelattu</th>-->
-                <th>Erät</th>
-                <th>Piste-ero</th>
-            </tr>
-            <tr ng-repeat="rivi in tulostaulu.rivit | orderBy:'sija'">
-                <td><input type="number" style="width: 30px;" ng-model="rivi.sija"></td>
-                <td>{{rivi.joukkue.lyhenne}}</td>
-                <!--<td>{{rivi.ottelut}}</td>-->
-                <!--<td>{{rivi.eraplus}}</td>-->
-                <!--<td>{{rivi.pisteet}}</td>-->
-                <td>{{rivi.totalErat}}</td>
-                <td>{{rivi.totalPisteet}}</td>
-            </tr>
-
-        </table>
-        <textarea ng-model="tulostaulu.selitys" style="width: 650px;"></textarea>
+    <div class="toolbar">
+        <span class="button buttonAdd" ng-click="tulostaulu.laskeUudestaan()"> Laske tulokset </span>
     </div>
+    <table border=1>
+        <tr>
+            <th>Sija</th>
+            <th>Joukkue</th>
+            <!--<th>Pelattu</th>-->
+            <th>Erät</th>
+            <th>Piste-ero</th>
+        </tr>
+        <tr ng-repeat="rivi in tulostaulu.rivit | orderBy:'sija'">
+            <td><input type="number" style="width: 30px;" ng-model="rivi.sija"></td>
+            <td>{{rivi.joukkue.lyhenne}}</td>
+            <!--<td>{{rivi.ottelut}}</td>-->
+            <!--<td>{{rivi.eraplus}}</td>-->
+            <!--<td>{{rivi.pisteet}}</td>-->
+            <td>{{rivi.totalErat}}</td>
+            <td>{{rivi.totalPisteet}}</td>
+        </tr>
 
+    </table>
+    <textarea ng-model="tulostaulu.selitys" style="width: 650px;"></textarea>
 </div>

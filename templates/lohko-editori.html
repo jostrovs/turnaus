@@ -6,10 +6,11 @@
 
     <div class="jj-toggle">
 
+        <div class="joukkueet">
         <h5>Joukkueet:</h5>
-        <div class="jj-toggle joukkueet">
+        <div class="jj-toggle">
 
-            <div style="margin-bottom: 10px;">
+            <div class="toolbar">
                 <span class="button buttonAdd" ng-click="lohko.addJoukkue()"> Lisää </span> &nbsp;
                 <span class="button buttonRemove" ng-click="lohko.popJoukkue()"> Poista </span>
             </div>
@@ -19,46 +20,49 @@
             </div>
 
         </div>
+</div>
 
-        <h5>Ottelut:</h5>
-        <div class="jj-toggle ottelut">
+        <div class="ottelut">
+            <h5>Ottelut:</h5>
+            <div class="jj-toggle">
 
-            <div style="margin-top: 15px; margin-bottom: 15px;">
-                <span class="button buttonAdd" ng-click="lohko.arvoYksiTulos()"> Arvo yksi </span>
-                <span class="button buttonAdd" ng-click="lohko.arvoKaikkiTulokset()"> Arvo kaikki </span>
+                <div class="toolbar">
+                    <span class="button buttonAdd" ng-click="lohko.arvoYksiTulos()"> Arvo yksi </span>
+                    <span class="button buttonAdd" ng-click="lohko.arvoKaikkiTulokset()"> Arvo kaikki </span>
 
-                <span class="button buttonRemove" ng-click="lohko.poistaOttelut()" style="margin-left: 199px;"> Poista ottelut </span>
-                <span class="button buttonAdd" ng-click="lohko.luoOttelut()"> Luo ottelut </span>
-            </div>
+                    <span class="button buttonRemove" ng-click="lohko.poistaOttelut()" style="margin-left: 199px;"> Poista ottelut </span>
+                    <span class="button buttonAdd" ng-click="lohko.luoOttelut()"> Luo ottelut </span>
+                </div>
 
-            <table border=1 cellspacing=0>
-                <tr>
-                    <th>No</th>
-                    <th>Koti</th>
-                    <th>-</th>
-                    <th>Vieras</th>
-                    <th>Tuomari</th>
-                    <th>Tulos</th>
-                    <th></th>
-                    <th>+/-</th>
-                </tr>
-                <tr ng-repeat="ottelu in lohko.ottelut | orderBy:'no'">
-                    <td class="ottelu-editor-solu"><input type="number" ng-model="ottelu.no" style="width: 30px;"></td>
-                    <td class="ottelu-editor-solu">{{ottelu.koti.lyhenne}}</td>
-                    <td class="ottelu-editor-solu">-</td>
-                    <td class="ottelu-editor-solu">{{ottelu.vieras.lyhenne}}</td>
-                    <td class="ottelu-editor-solu">{{ottelu.tuomari.lyhenne}}</td>
-                    <td class="ottelu-editor-solu">
-                        <input class="ottelutulos" ng-model="ottelu.tulos" ng-change="ottelu.onChange()">
-                        <span class="changed" ng-show="ottelu.onMuuttunut()">
+                <table border=1 cellspacing=0>
+                    <tr>
+                        <th>No</th>
+                        <th>Koti</th>
+                        <th>-</th>
+                        <th>Vieras</th>
+                        <th>Tuomari</th>
+                        <th>Tulos</th>
+                        <th></th>
+                        <th>+/-</th>
+                    </tr>
+                    <tr ng-repeat="ottelu in lohko.ottelut | orderBy:'no'">
+                        <td class="ottelu-editor-solu"><input type="number" ng-model="ottelu.no" style="width: 30px;"></td>
+                        <td class="ottelu-editor-solu">{{ottelu.koti.lyhenne}}</td>
+                        <td class="ottelu-editor-solu">-</td>
+                        <td class="ottelu-editor-solu">{{ottelu.vieras.lyhenne}}</td>
+                        <td class="ottelu-editor-solu">{{ottelu.tuomari.lyhenne}}</td>
+                        <td class="ottelu-editor-solu">
+                            <input class="ottelutulos" ng-model="ottelu.tulos" ng-change="ottelu.onChange()">
+                            <span class="changed" ng-show="ottelu.onMuuttunut()">
                          Muuttunut
                     </span>
-                    </td>
-                    <td class="ottelu-editor-solu">{{ottelu.tulos}}</td>
-                    <td class="ottelu-editor-solu">{{ottelu.ero}}</td>
-                </tr>
-            </table>
+                        </td>
+                        <td class="ottelu-editor-solu">{{ottelu.tulos}}</td>
+                        <td class="ottelu-editor-solu">{{ottelu.ero}}</td>
+                    </tr>
+                </table>
 
+            </div>
         </div>
 
         <div class="tulostaulu">

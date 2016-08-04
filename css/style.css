@@ -6,34 +6,79 @@ my-joukkue {
 
 }
 
+h3, h4, h5 {
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 my-joukkue > input {
     font-size: x-small;
 
 }
 .sarja {
-    background-color: #ffa;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background-color: #eee;
+}
+
+.sarja-container {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
 .lohko {
-    background-color: #eef;
+    background-color: #354;
     padding-left: 20px;
     padding-top: 15px;
+    padding-bottom: 15px;
    
+    margin-bottom: 20px;
+    margin-top: 20px;  
+    margin-left: 40px;
+
+    border: 2px dashed lightblue; 
+}
+
+.sarja-joukkueet {
+    background-color: #ffd;
+    padding: 10px 10px 10px 0px;
+
+    margin-bottom: 20px;
+    margin-top: 20px;  
+
+    border: 2px dashed lightblue; 
 }
 
 .joukkueet {
-    background-color: #ddd;
-    padding: 10px 10px;
+    background-color: #ddf;
+    padding: 10px 10px 10px 0px;
+
+    margin-bottom: 20px;
+    margin-top: 20px;  
+
+    border: 2px dashed lightblue; 
 }
 
 .ottelut {
-    background-color: #ffd;
+    background-color: #dfd;
     padding: 10px;
+
+    margin-bottom: 20px;
+    margin-top: 20px;  
+
+    border: 2px dashed lightblue; 
 }
 
 .tulostaulu {
-    background-color: #dfd;
-    padding: 1px;
+    background-color: #fdf;
+    padding: 10px;
+
+    margin-bottom: 20px;
+    margin-top: 20px;  
+
+    border: 2px dashed lightblue; 
 }
 
 .button {
@@ -54,6 +99,11 @@ my-joukkue > input {
 .buttonRemove {
     background-color: indianred;
     color: darkred;
+}
+
+.toolbar {
+    margin-top: 18px;
+    margin-bottom: 15px;
 }
 
 .changed {
