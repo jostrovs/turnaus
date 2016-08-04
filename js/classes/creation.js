@@ -1,7 +1,7 @@
 ///////////////////////////////////////
 // Luontifunktiot
 
-var luoTurnaus = function(){
+var luoTurnaus = function () {
     let turnaus = new Turnaus();
     turnaus.pvm = new Date(2017, 0, 5, 0, 0, 0);
     turnaus.sarjat.push(luoSarja('Miehet A', 'MA'));
@@ -12,7 +12,7 @@ var luoTurnaus = function(){
     return turnaus;
 };
 
-var luoSarja = function(nimi, lyhenne){
+var luoSarja = function (nimi, lyhenne) {
     var sarja = new Sarja(nimi, lyhenne);
 
     var joukkueet = [];
@@ -27,27 +27,57 @@ var luoSarja = function(nimi, lyhenne){
 
 
 
-    var lohkoon1 = joukkueet.slice(0,4);
-    var lohkoon2 = joukkueet.slice(4,8);
+    var lohkoon1 = joukkueet.slice(0, 4);
+    var lohkoon2 = joukkueet.slice(4, 8);
 
-    sarja.alkulohkot.push(luoLohko(nimi + " alku 1", lohkoon1, luoAlku4));
-    sarja.alkulohkot.push(luoLohko(nimi + " alku 2", lohkoon2, luoAlku4));
+    sarja.alkulohkot.push(luoLohko(nimi + " alku 1", lohkoon1, luoRoundRobin));
+    sarja.alkulohkot.push(luoLohko(nimi + " alku 2", lohkoon2, luoRoundRobin));
     return sarja;
 };
 
-var luoLohko = function(nimi, joukkueet, otteluFunktio){
+var luoLohko = function (nimi, joukkueet, otteluFunktio) {
     var lohko = new Lohko(nimi, joukkueet);
     lohko.ottelut = otteluFunktio(joukkueet);
     lohko.laskeTulokset();
     return lohko;
 };
 
-var luoAlku4 = function(joukkueet){
+var luoRoundRobin = function (joukkueet) {
+    if (joukkueet.length < 3) throw "Ei voi luoda round robinia, kun joukkueita on alle 3.";
+    if (joukkueet.length > 5) throw "Ei voi luoda round robinia, kun joukkueita on yli 5.";
+
     var ret = [];
-    ret.push(new Ottelu(joukkueet[0], joukkueet[1], joukkueet[2], "2-0 (25-22, 25-22)"));
-    ret.push(new Ottelu(joukkueet[1], joukkueet[2], joukkueet[3], "2-1 (25-12, 10-25, 15-12)"));
-    ret.push(new Ottelu(joukkueet[2], joukkueet[3], joukkueet[0], "2-0 (25-20, 25-22)"));
-    ret.push(new Ottelu(joukkueet[3], joukkueet[0], joukkueet[1], "2-0 (25-21, 25-18)"));
+
+    if (joukkueet.length == 3) {
+        ret.push(new Ottelu(joukkueet[0], joukkueet[1], joukkueet[2]));
+        ret.push(new Ottelu(joukkueet[1], joukkueet[2], joukkueet[3]));
+        ret.push(new Ottelu(joukkueet[2], joukkueet[3], joukkueet[0]));
+    }
+
+    if (joukkueet.length == 4) {
+        ret.push(new Ottelu(joukkueet[0], joukkueet[1], joukkueet[2]));
+        ret.push(new Ottelu(joukkueet[2], joukkueet[3], joukkueet[1]));
+        ret.push(new Ottelu(joukkueet[1], joukkueet[2], joukkueet[3]));
+        ret.push(new Ottelu(joukkueet[0], joukkueet[3], joukkueet[2]));
+        ret.push(new Ottelu(joukkueet[3], joukkueet[1], joukkueet[0]));
+        ret.push(new Ottelu(joukkueet[2], joukkueet[0], joukkueet[3]));
+    }
+
+    if (joukkueet.length == 5) {
+        ret.push(new Ottelu(joukkueet[0], joukkueet[1], joukkueet[2]));
+        ret.push(new Ottelu(joukkueet[2], joukkueet[3], joukkueet[4]));
+        ret.push(new Ottelu(joukkueet[4], joukkueet[1], joukkueet[3]));
+
+        ret.push(new Ottelu(joukkueet[0], joukkueet[3], joukkueet[1]));
+        ret.push(new Ottelu(joukkueet[2], joukkueet[4], joukkueet[0]));
+        ret.push(new Ottelu(joukkueet[1], joukkueet[2], joukkueet[3]));
+
+        ret.push(new Ottelu(joukkueet[0], joukkueet[4], joukkueet[1]));
+        ret.push(new Ottelu(joukkueet[3], joukkueet[1], joukkueet[2]));
+        ret.push(new Ottelu(joukkueet[2], joukkueet[0], joukkueet[4]));
+        ret.push(new Ottelu(joukkueet[4], joukkueet[3], joukkueet[0]));
+    }
+
     return ret;
 };
 
