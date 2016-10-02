@@ -1,10 +1,12 @@
-<!-- Lohko editori -->
+<!-- Sijoituslohko editori -->
 <div class="lohko">
 
-    <h4> Alkulohko: <input ng-model="lohko.nimi"></h4>
+    <h4> Sijoituslohko: <input ng-model="lohko.nimi"></h4>
     <!--<h4 ng-click="lohko.toggle()"> Alku/sijoituslohko: {{lohko.nimi}}</h4>-->
 
     <div class="jj-toggle">
+
+        <p>Ylin sija: <input ng-model="lohko.ylinsija"></p>
 
         <div class="joukkueet">
         <h5>Joukkueet:</h5>
@@ -43,10 +45,9 @@
                         <th>Tuomari</th>
                         <th>Tulos</th>
                         <th></th>
-                        <th>+/-</th>
                     </tr>
                     <tr ng-repeat="ottelu in lohko.ottelut | orderBy:'no'">
-                        <td class="ottelu-editor-solu"><input type="number" ng-model="ottelu.no" style="width: 30px;"></td>
+                        <td class="ottelu-editor-solu">{{ottelu.no}}</td>
                         <td class="ottelu-editor-solu">{{ottelu.koti.lyhenne}}</td>
                         <td class="ottelu-editor-solu">-</td>
                         <td class="ottelu-editor-solu">{{ottelu.vieras.lyhenne}}</td>
@@ -58,15 +59,21 @@
                     </span>
                         </td>
                         <td class="ottelu-editor-solu">{{ottelu.tulos}}</td>
-                        <td class="ottelu-editor-solu">{{ottelu.ero}}</td>
                     </tr>
                 </table>
 
             </div>
         </div>
 
-        <div class="tulostaulu">
-            <tulostaulu-editori tulostaulu="lohko.tulostaulu"></tulostaulu-editori>
+        <h3>Sijoitukset</h3>
+        <div class="toolbar">
+        <span class="button buttonAdd" ng-click="lohko.laskeValiera()"> Laske tulokset </span>
+    </div>
+        <div class="sijoitukset">
+                {{lohko.sijat[0]}}<br>
+                {{lohko.sijat[1]}}<br>
+                {{lohko.sijat[2]}}<br>
+                {{lohko.sijat[3]}}<br>
         </div>
     </div>
 </div>

@@ -32,6 +32,9 @@ var luoSarja = function (nimi, lyhenne) {
 
     sarja.alkulohkot.push(luoLohko(nimi + " alku 1", lohkoon1, luoRoundRobin));
     sarja.alkulohkot.push(luoLohko(nimi + " alku 2", lohkoon2, luoRoundRobin));
+
+    sarja.sijoituslohkot.push(luoSijoituslohko(nimi + " sijat 1-4", lohkoon1, 1));
+    sarja.sijoituslohkot.push(luoSijoituslohko(nimi + " sijat 5-8", lohkoon2, 5));
     return sarja;
 };
 
@@ -39,6 +42,25 @@ var luoLohko = function (name, joukkueet, otteluFunktio) {
     var lohko = new Lohko(name, joukkueet);
     lohko.ottelut = otteluFunktio(joukkueet);
     return lohko;
+};
+
+var luoSijoituslohko = function (name, joukkueet, ylinsija) {
+    var lohko = new Lohko(name, joukkueet, 0, ylinsija);
+    lohko.ottelut = luoValiera(joukkueet);
+    return lohko;
+};
+
+var luoValiera = function(joukkueet){
+    if(joukkueet.length !== 4) throw "Ei voi luoda välierää, kun joukkueita on muu määrä kuin 4.";
+
+    var ret = [];
+
+    ret.push(new Ottelu(joukkueet[0], joukkueet[1], new Joukkue("", "Toisen välieräottelun joukkueet")));
+    ret.push(new Ottelu(joukkueet[2], joukkueet[3], new Joukkue("", "Edellisen ottelun häviäjä")));
+    ret.push(new Ottelu(new Joukkue("", "Ensimmäisen välierän häviäjä"), new Joukkue("", "Toisen välierän häviäjä"), new Joukkue("", "Edellisen ottelun voittaja")));
+    ret.push(new Ottelu(new Joukkue("", "Ensimmäisen välierän voittaja"), new Joukkue("", "Toisen välierän voittaja"), new Joukkue("", "Edellisen ottelun häviäjä")));
+
+    return ret;
 };
 
 var luoRoundRobin = function (joukkueet) {

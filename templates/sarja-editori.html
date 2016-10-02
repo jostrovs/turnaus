@@ -29,7 +29,8 @@
             <hr>
         </div>
         <div ng-repeat="lohko in sarja.sijoituslohkot">
-            <h4> Sijoituslohko: {{lohko.nimi}}</h4>
+            <sijoituslohko-editori lohko="lohko"></sijoituslohko-editori>
+            <hr>
         </div>
 
     </div>

@@ -75,6 +75,19 @@ app.controller('turnaus', function($timeout, $scope) {
             });
         }
     };
+}).directive('sijoituslohkoEditori', function($timeout){
+    return {
+        restrict: 'E',
+        scope: {
+            lohko: '='
+        },
+        templateUrl: 'templates/sijoituslohko-editori.html',
+        controller: function($scope, $element, $attrs){
+            $timeout(function(){
+                jj_init();
+            });
+        }
+    };
 });
 
 

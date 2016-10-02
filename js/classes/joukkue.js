@@ -1,12 +1,13 @@
 // Joukkue
 
 var Joukkue = function(nimi, lyhenne){
+    
     this.nimi = nimi;
     this._lyh = lyhenne;
     this.lyhenne = ""; // Tämä on vain getteri
 
     this.getNimi=function(){
-        return nimi;
+        return this.nimi;
     };
 
     this.showLyhenne=function(){

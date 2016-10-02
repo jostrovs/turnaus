@@ -1,7 +1,12 @@
 // Lohko
 
-function Lohko(nimi, joukkueet, roundRobin){
+function Lohko(nimi, joukkueet, roundRobin, ylinsija){
     this.nimi = nimi;
+    
+    this.ylinsija = ylinsija;
+    if(ylinsija == undefined) ylinsija = 1;
+
+    this.sijat=["Finaalin voittaja", "Finaalin häviäjä", "Pronssin voittaja", "Pronssin häviäjä"]; // Välierälohkon sijat
 
     this.roundRobin = roundRobin;
 
@@ -23,6 +28,68 @@ function Lohko(nimi, joukkueet, roundRobin){
     };
 
     this.tulostaulu=new Tulostaulu(this);
+
+    this.laskeValiera = function(){
+        this.sijat = [this.sijat[0], this.sijat[1], this.sijat[2], this.sijat[3]];
+        
+        var ylinsija = parseInt(this.ylinsija,10);
+
+        // Jos ekan pelin tulos on olemassa, täytetään kahteen vikaan ekat joukkueet
+        if(typeof this.ottelut[0].tulos !== 'undefined'){
+            var t = this.ottelut[0].parseTulos();
+            if(t.kotivoitto > 0){
+                // kotivoitto
+                this.ottelut[2].koti = this.ottelut[0].vieras;
+                this.ottelut[3].koti = this.ottelut[0].koti;
+            } else {
+                // vierasvoitto
+                this.ottelut[2].koti = this.ottelut[0].koti;
+                this.ottelut[3].koti = this.ottelut[0].vieras;
+            }
+        }
+
+        // Jos tokan pelin tulos on olemassa, täytetään kahteen vikaan toiset joukkueet
+        if(typeof this.ottelut[1].tulos !== 'undefined'){
+            var t = this.ottelut[1].parseTulos();
+            if(t.kotivoitto > 0){
+                // kotivoitto
+                this.ottelut[2].vieras = this.ottelut[1].vieras;
+                this.ottelut[3].vieras = this.ottelut[1].koti;
+            } else {
+                // vierasvoitto
+                this.ottelut[2].vieras = this.ottelut[1].koti;
+                this.ottelut[3].vieras = this.ottelut[1].vieras;
+            }
+        }
+
+        // Jos kolmannen pelin tulos on olemassa, täytetään alimmat sijoitukset
+        if(typeof this.ottelut[2].tulos !== 'undefined'){
+            var t = this.ottelut[2].parseTulos();
+            if(t.kotivoitto > 0){
+                // kotivoitto
+                this.sijat[2] = (ylinsija+2).toString() + ". " + this.ottelut[2].koti.getNimi();
+                this.sijat[3] = (ylinsija+3).toString() + ". " + this.ottelut[2].vieras.getNimi();
+            } else {
+                // vierasvoitto
+                this.sijat[2] = (ylinsija+2).toString() + ". " + this.ottelut[2].vieras.getNimi();
+                this.sijat[3] = (ylinsija+3).toString() + ". " + this.ottelut[2].koti.getNimi();
+            }
+        }
+
+        // Jos neljännen pelin tulos on olemassa, täytetään ylimmät sijoitukset
+        if(typeof this.ottelut[3].tulos !== 'undefined'){
+            var t = this.ottelut[3].parseTulos();
+            if(t.kotivoitto > 0){
+                // kotivoitto
+                this.sijat[0] = (ylinsija+0).toString() + ". " + this.ottelut[3].koti.getNimi();
+                this.sijat[1] = (ylinsija+1).toString() + ". " + this.ottelut[3].vieras.getNimi();
+            } else {
+                // vierasvoitto
+                this.sijat[0] = (ylinsija+0).toString() + ". " + this.ottelut[3].vieras.getNimi();
+                this.sijat[1] = (ylinsija+1).toString() + ". " + this.ottelut[3].koti.getNimi();
+            }
+        }
+    };
 
     this.onMuuttunut = function(){
         for(let ottelu of this.ottelut){
@@ -53,7 +120,11 @@ function Lohko(nimi, joukkueet, roundRobin){
     }
 
     this.luoOttelut = function(){
-        this.ottelut = luoRoundRobin(this.joukkueet);
+        if(this.roundRobin || this.joukkueet.length === 3 || this.joukkueet.length === 5){
+            this.ottelut = luoRoundRobin(this.joukkueet);
+        } else {
+            this.ottelut = luoValiera(this.joukkueet);
+        }
     }
 
     this.numeroiOttelut = function(seed=1){
