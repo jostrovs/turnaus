@@ -101,6 +101,16 @@ my-joukkue > input {
     color: darkred;
 }
 
+.buttonOn {
+    background-color: #ffa;
+    color: darkblue;
+}
+
+.buttonOff {
+    background-color: #ededed;
+    color: #888;
+}
+
 .toolbar {
     margin-top: 18px;
     margin-bottom: 15px;
@@ -142,7 +152,7 @@ my-joukkue > input {
 }
 
 .navigaattori a:link, a:visited {
-    color: white;
+    color: black;
     text-decoration: none;
         padding: 6px;
 }

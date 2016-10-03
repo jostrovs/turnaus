@@ -5,7 +5,7 @@
 
     var toggleableAutoId = 1;
 
-    var getSettings = function(options){
+    var getSettings = function (options) {
         let settings = $.extend({
             hideOnStart: true,
             addToggleElement: true,
@@ -19,7 +19,7 @@
         let settings = getSettings(options);
 
         // this osoittaa diviin, joka toggletetaan.
-        
+
         let $headerElement = $(this).prev();
 
         makeToggleable($headerElement, settings);
@@ -39,10 +39,17 @@
         return this;
     };
 
-    var handleHideOnStartAttribute = function($elem){
+    var handleHideOnStartAttribute = function ($elem, idHide, idShow) {
         // JOs elementillä on attribuutti jjHideOnStart => piilotetaan alussa
         let hideOnStart = $elem.attr("jj-hide-on-start");
-        if(hideOnStart !== undefined) $elem.hide();
+        if (hideOnStart !== undefined) {
+            $elem.css("display", "none");
+            $("#" + idHide).css("display", "none");
+            return true;
+        } else {
+            $("#" + idShow).css("display", "none");
+        }
+        return false;
     };
 
     var makeToggleable = function (header_element, settings) {
@@ -56,7 +63,7 @@
         }
 
         // Ei käsitellä montaa kertaa
-        if($.inArray(id, handledIds) > -1) return;
+        if ($.inArray(id, handledIds) > -1) return;
         handledIds.push(id);
 
         let idShow = id + "_show";
@@ -83,14 +90,16 @@
             $(header_element).css("cursor", "pointer");
         }
 
-        if (settings.hideOnStart) {
-            $toggledDiv.css("display", "none");
-            $("#" + idHide).css("display", "none");
-        } else {
-            $("#" + idShow).css("display", "none");
-        }
 
-        handleHideOnStartAttribute($toggledDiv);
+        if (!handleHideOnStartAttribute($toggledDiv, idHide, idShow)) {
+            // Ei ole jo käsitelty attribuuttia tarkastellessa, joten voidaan katsoa asetustenkin tilanne
+            if (settings.hideOnStart) {
+                $toggledDiv.css("display", "none");
+                $("#" + idHide).css("display", "none");
+            } else {
+                $("#" + idShow).css("display", "none");
+            }
+        }
 
         $("#" + idShow).click(toggle);
         $("#" + idHide).click(toggle);
@@ -104,11 +113,15 @@
     });
 })(jQuery);
 
-var jj_init = function(){
-        $(".jj-toggle").each(function (index) {
-            $(this).jjToggleable({hideOnStart: false});
+var jj_init = function () {
+    $(".jj-toggle").each(function (index) {
+        $(this).jjToggleable({
+            hideOnStart: false
         });
-        $(".jj-toggle-next").each(function (index) {
-            $(this).jjNextToggleable({hideOnStart: false});
+    });
+    $(".jj-toggle-next").each(function (index) {
+        $(this).jjNextToggleable({
+            hideOnStart: false
         });
+    });
 };

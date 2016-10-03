@@ -1,0 +1,47 @@
+<!-- Sijoituslohko view -->
+<div class="lohko">
+
+    <a name='{{lohko.id}}'></a> <h4> Sijoituslohko: {{lohko.nimi}}</h4>
+    <div class="jj-toggle">
+        <!--<h4 ng-click="lohko.toggle()"> Alku/sijoituslohko: {{lohko.nimi}}</h4>-->
+
+        <div class="joukkueet">
+            <h5>Joukkueet:</h5>
+
+            <div ng-repeat="joukkue in lohko.joukkueet">
+                <joukkue-view joukkue="joukkue"></joukkue-view>
+            </div>
+        </div>
+
+        <div class="ottelut">
+            <h5>Ottelut:</h5>
+
+            <table border=1 cellspacing=0>
+                <tr>
+                    <th>No</th>
+                    <th>Koti</th>
+                    <th>-</th>
+                    <th>Vieras</th>
+                    <th>Tuomari</th>
+                    <th>Tulos</th>
+                </tr>
+                <tr ng-repeat="ottelu in lohko.ottelut | orderBy:'no'">
+                    <td>{{ottelu.no}}</td>
+                    <td>{{ottelu.koti.lyhenne}}</td>
+                    <td>-</td>
+                    <td>{{ottelu.vieras.lyhenne}}</td>
+                    <td>{{ottelu.tuomari.lyhenne}}</td>
+                    <td>{{ottelu.tulos}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>Sijoitukset</h3>
+        <div class="sijoitukset">
+            {{lohko.sijat[0]}}<br> {{lohko.sijat[1]}}
+            <br> {{lohko.sijat[2]}}
+            <br> {{lohko.sijat[3]}}
+            <br>
+        </div>
+    </div>
+</div>

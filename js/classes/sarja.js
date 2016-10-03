@@ -1,5 +1,6 @@
 // Sarja
 var Sarja = function (nimi, lyhenne) {
+    this.id = "sarja" + lyhenne;
     this.nimi = nimi;
     this.lyhenne = lyhenne;
 

@@ -1,0 +1,42 @@
+<!-- Lohko view -->
+<div class="lohko">
+
+    <a name='{{lohko.id}}'></a> <h4> Alkulohko: {{lohko.nimi}}</h4>
+
+    <div class="jj-toggle">
+
+        <div class="joukkueet">
+            <h5>Joukkueet:</h5>
+                <div ng-repeat="joukkue in lohko.joukkueet">
+                    <joukkue-view joukkue="joukkue"></joukkue-view>
+                </div>
+        </div>
+
+        <div class="ottelut">
+            <h5>Ottelut:</h5>
+
+                <table border=1 cellspacing=0>
+                    <tr>
+                        <th>No</th>
+                        <th>Koti</th>
+                        <th>-</th>
+                        <th>Vieras</th>
+                        <th>Tuomari</th>
+                        <th>Tulos</th>
+                    </tr>
+                    <tr ng-repeat="ottelu in lohko.ottelut | orderBy:'no'">
+                        <td>{{ottelu.no}}</td>
+                        <td>{{ottelu.koti.lyhenne}}</td>
+                        <td>-</td>
+                        <td>{{ottelu.vieras.lyhenne}}</td>
+                        <td>{{ottelu.tuomari.lyhenne}}</td>
+                        <td>{{ottelu.tulos}}</td>
+                    </tr>
+                </table>
+        </div>
+
+        <div class="tulostaulu">
+            <tulostaulu-view tulostaulu="lohko.tulostaulu"></tulostaulu-view>
+        </div>
+    </div>
+</div>

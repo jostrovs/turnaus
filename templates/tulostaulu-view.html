@@ -1,0 +1,28 @@
+<!-- Tulostaulu view -->
+<h5>Tulokset:
+</h5>
+
+
+<div class="tulostauluRivit" style="margin-left: 60px;">
+
+    <table border=1>
+        <tr>
+            <th>Sija</th>
+            <th>Joukkue</th>
+            <!--<th>Pelattu</th>-->
+            <th>Erät</th>
+            <th>Piste-ero</th>
+        </tr>
+        <tr ng-repeat="rivi in tulostaulu.rivit | orderBy:'sija'">
+            <td>{{rivi.sija}}</td>
+            <td>{{rivi.joukkue.lyhenne}}</td>
+            <!--<td>{{rivi.ottelut}}</td>-->
+            <!--<td>{{rivi.eraplus}}</td>-->
+            <!--<td>{{rivi.pisteet}}</td>-->
+            <td>{{rivi.totalErat}}</td>
+            <td>{{rivi.totalPisteet}}</td>
+        </tr>
+
+    </table>
+    <p>{{tulostaulu.selitys}}</p>
+</div>

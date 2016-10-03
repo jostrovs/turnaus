@@ -27,25 +27,33 @@
     </ul>
 
     <div class="container-fluid">
-        <h1>Turnaus {{turnaus.vuosi()}}</h1>
+        <h1>Turnaus editori {{turnaus.vuosi()}}</h1>
 
-        <h1 style="padding: 40px; background-color: salmon; color: red; border: 2px solid dark-red;">Tee toggleable-luokista versiot, joilla voi valita suoraan kiinni/auki ja indikaattorit päällä/pois</h1>
+        <div class="jj-toggle">
 
-        Pvm: <input type="date" ng-model="turnaus.pvm"><br>
-        <br> Pelipäivä: {{turnaus.pvm}}
+            Pvm: <input type="date" ng-model="turnaus.pvm"><br>
+            <br> Pelipäivä: {{turnaus.pvm}}
 
             <div style="margin-top: 15px; margin-bottom: 15px;">
                 <span class="button buttonAdd" ng-click="turnaus.numeroiOttelut()"> Numeroi ottelut uudelleen </span>
             </div>
-        
-        <hr>
 
-        <div ng-repeat="sarja in turnaus.sarjat">
-            <sarja-editori sarja="sarja"></sarja-editori>
+            <hr>
+
+            <div ng-repeat="sarja in turnaus.sarjat">
+                <sarja-editori sarja="sarja"></sarja-editori>
+            </div>
+
         </div>
 
         <!--<hr> {{asJson}}-->
 
+        <hr>
+        <h1> Näytöt</h1>
+
+        <div ng-repeat="sarja in turnaus.sarjat">
+            <sarja-view sarja="sarja"></sarja-view>
+        </div>
     </div>
 
 </body>

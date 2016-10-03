@@ -1,0 +1,47 @@
+<!-- Sarja view -->
+
+<div id="{{sarja.id}}" class="sarja-container tab-pane fade">
+
+    <a name="{{sarja.lyhenne}}"></a>
+    <h3> Sarja: {{sarja.nimi}} ({{sarja.lyhenne}})</h3>
+
+    <div class="sarja-joukkueet">
+        <div>Sarjan joukkueet:</div>
+        <div class="jj-toggle">
+            <ol>
+                <li ng-repeat="joukkue in sarja.joukkueet()">
+                    <joukkue-view joukkue="joukkue"></joukkue-view>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <p>
+        Alkulohkot:
+        <span class="button" ng-repeat="alkulohko in sarja.alkulohkot">
+            <a href='#{{alkulohko.id}}'>{{alkulohko.nimi}}</a>
+        </span>
+    </p>
+
+    <p>
+        Sijoituslohkot:
+        <span class="button" ng-repeat="sijoituslohko in sarja.sijoituslohkot">
+            <a href='#{{sijoituslohko.id}}'>{{sijoituslohko.nimi}}</a>
+        </span>
+    </p>
+
+    <div>
+
+        <div ng-repeat="lohko in sarja.alkulohkot">
+            <lohko-view lohko="lohko"></lohko-view>
+            <hr>
+        </div>
+        <div ng-repeat="lohko in sarja.sijoituslohkot">
+            <sijoituslohko-view lohko="lohko"></sijoituslohko-view>
+            <hr>
+        </div>
+
+    </div>
+</div>
+
+<hr>

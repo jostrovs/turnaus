@@ -2,6 +2,7 @@
 
 function Lohko(nimi, joukkueet, roundRobin, ylinsija){
     this.nimi = nimi;
+    this.id = "lohko" + nimi;
     
     this.ylinsija = ylinsija;
     if(ylinsija == undefined) ylinsija = 1;

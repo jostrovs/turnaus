@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/jj.css">
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/turnaus2016.js"></script>
+
+    <!-- Omat filet -->
+    <script src="js/classes/sarja.js"></script>
+    <script src="js/classes/lohko.js"></script>
+    <script src="js/classes/joukkue.js"></script>
+    <script src="js/classes/ottelu.js"></script>
+    <script src="js/classes/tulostaulu.js"></script>
+
+    <script src="js/classes/creation.js"></script>
+    <script src="js/jj.js"></script>
+
+    <title>Turnaus2016</title>
+</head>
+
+<body ng-app="myApp" ng-controller="turnaus">
+    <div class="container-fluid">
+        <div class="toolbar">
+            <span id="tMA" class="my-toggle-bar button buttonOn" onclick="toggleTabs('MA')">Miehet A</span>
+            <span id="tMB" class="my-toggle-bar button buttonOff" onclick="toggleTabs('MB')">Miehet B</span>
+            <span id="tMC" class="my-toggle-bar button buttonOff" onclick="toggleTabs('MC')">Miehet C</span>
+            <span id="tNA" class="my-toggle-bar button buttonOff" onclick="toggleTabs('NA')">Naiset A</span>
+            <span id="tNB" class="my-toggle-bar button buttonOff" onclick="toggleTabs('NB')">Naiset B</span>
+        </div>
+
+        <h1> Näytöt</h1>
+
+        <div id="sarjaMA" class="my-sarja">
+            <sarja-view sarja="turnaus.sarjat[0]"></sarja-view>
+        </div>
+        <div id="sarjaMB" class="my-sarja" style="display: none">
+            <sarja-view sarja="turnaus.sarjat[1]"></sarja-view>
+        </div>
+        <div id="sarjaMC" class="my-sarja" style="display: none">
+            <sarja-view sarja="turnaus.sarjat[2]"></sarja-view>
+        </div>
+        <div id="sarjaNA" class="my-sarja" style="display: none">
+            <sarja-view sarja="turnaus.sarjat[3]"></sarja-view>
+        </div>
+        <div id="sarjaNB" class="my-sarja" style="display: none">
+            <sarja-view sarja="turnaus.sarjat[4]"></sarja-view>
+        </div>
+    </div>
+
+</body>
+<script>
+    function toggleTabs(tab){
+        $(".my-sarja").hide();
+        $(".my-toggle-bar").addClass("buttonOff");
+        $(".my-toggle-bar").removeClass("buttonOn");
+
+        $("#sarja" + tab).show();
+        $("#t" + tab).addClass("buttonOn");
+        $("#t" + tab).removeClass("buttonOff");
+    };
+
+</script>
+</html>

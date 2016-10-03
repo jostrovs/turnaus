@@ -21,6 +21,20 @@ app.controller('turnaus', function($timeout, $scope) {
         }
     };
 })
+.directive('sarjaView', function($timeout){
+    return {
+        restrict: 'E',
+        scope: {
+            sarja: '='
+        },
+        templateUrl: 'templates/sarja-view.html',
+        controller: function($scope, $element, $attrs){
+            $timeout(function(){
+                jj_init();
+            });
+        }
+    };
+})
 .directive('joukkueEditori', function($timeout){
     return {
         restrict: 'E',
@@ -62,6 +76,19 @@ app.controller('turnaus', function($timeout, $scope) {
             });
         }
     };
+}).directive('tulostauluView', function($timeout){
+    return {
+        restrict: 'E',
+        scope: {
+            tulostaulu: '='
+        },
+        templateUrl: 'templates/tulostaulu-view.html',
+        controller: function($scope, $element, $attrs){
+            $timeout(function(){
+                jj_init();
+            });
+        }
+    };
 }).directive('lohkoEditori', function($timeout){
     return {
         restrict: 'E',
@@ -75,6 +102,19 @@ app.controller('turnaus', function($timeout, $scope) {
             });
         }
     };
+}).directive('lohkoView', function($timeout){
+    return {
+        restrict: 'E',
+        scope: {
+            lohko: '='
+        },
+        templateUrl: 'templates/lohko-view.html',
+        controller: function($scope, $element, $attrs){
+            $timeout(function(){
+                jj_init();
+            });
+        }
+    };
 }).directive('sijoituslohkoEditori', function($timeout){
     return {
         restrict: 'E',
@@ -82,6 +122,19 @@ app.controller('turnaus', function($timeout, $scope) {
             lohko: '='
         },
         templateUrl: 'templates/sijoituslohko-editori.html',
+        controller: function($scope, $element, $attrs){
+            $timeout(function(){
+                jj_init();
+            });
+        }
+    };
+}).directive('sijoituslohkoView', function($timeout){
+    return {
+        restrict: 'E',
+        scope: {
+            lohko: '='
+        },
+        templateUrl: 'templates/sijoituslohko-view.html',
         controller: function($scope, $element, $attrs){
             $timeout(function(){
                 jj_init();
