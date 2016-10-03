@@ -39,6 +39,12 @@
         return this;
     };
 
+    var handleHideOnStartAttribute = function($elem){
+        // JOs elementillä on attribuutti jjHideOnStart => piilotetaan alussa
+        let hideOnStart = $elem.attr("jj-hide-on-start");
+        if(hideOnStart !== undefined) $elem.hide();
+    };
+
     var makeToggleable = function (header_element, settings) {
         // element osoittaa toggle-elementtiin
         let $toggledDiv = $(header_element).next("div");
@@ -83,6 +89,8 @@
         } else {
             $("#" + idShow).css("display", "none");
         }
+
+        handleHideOnStartAttribute($toggledDiv);
 
         $("#" + idShow).click(toggle);
         $("#" + idHide).click(toggle);
