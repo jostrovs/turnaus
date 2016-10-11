@@ -3,7 +3,10 @@
 function Lohko(nimi, joukkueet, roundRobin, ylinsija){
     this.nimi = nimi;
     this.id = "lohko" + nimi;
-    
+    this.info = "";
+
+    this.selitys = ""; // Sijoituslohkon sijoitusten selittelyä. Alkulohkoissa on omansa
+
     this.ylinsija = ylinsija;
     if(ylinsija == undefined) ylinsija = 1;
 

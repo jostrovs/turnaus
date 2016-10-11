@@ -1,11 +1,31 @@
 // Turnauksen yleisiä juttuja
 var app = angular.module('myApp', []);
 app.controller('turnaus', function($timeout, $scope) {
-    $scope.turnaus = luoTurnaus();
+    $scope.turnaus = null;//luoTurnaus();
+
     $scope.asJson=JSON.stringify($scope.turnaus);
     $timeout(function(){
         jj_init();
     });
+
+    $scope.save = function(){
+        let s = JSON.stringify($scope.turnaus);
+        josSaveJson(JOS_TURNAUS_2017, s);
+        $("#save").notify("Talletettu.", {autoHideDelay: 2000, gap: 4, className: 'success'});
+    };
+
+    $scope.load = function(){
+        $scope.turnaus = null;
+        josLoadJson(JOS_TURNAUS_2017, function (d) {
+            let s = JSON.parse(d);
+            //let s = luoTurnaus();
+            $scope.turnaus = luoTurnausS(s);
+            $("#load").notify("Ladattu.", {autoHideDelay: 2000, gap: 4, className: 'success'});
+        });        
+    };
+
+    $scope.load();
+
 })
 .directive('sarjaEditori', function($timeout){
     return {
@@ -146,10 +166,8 @@ app.controller('turnaus', function($timeout, $scope) {
 
 // Turnaus
 var Turnaus = function(){
-    this.pvm = new Date(2017, 0, 4, 0, 0, 0);
-    this.vuosi = function(){ 
-        return this.pvm.getFullYear(); 
-    }
+    this.pvm = "5.1.2017";
+    this.vuosi = 2017;
 
     this.sarjat = [];
 

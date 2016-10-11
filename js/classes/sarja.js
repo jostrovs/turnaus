@@ -3,6 +3,7 @@ var Sarja = function (nimi, lyhenne) {
     this.id = "sarja" + lyhenne;
     this.nimi = nimi;
     this.lyhenne = lyhenne;
+    this.info = "";
 
     this.joukkueet = function () {
         var ret = [];

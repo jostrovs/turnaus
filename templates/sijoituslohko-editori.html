@@ -8,6 +8,13 @@
 
         <p>Ylin sija: <input ng-model="lohko.ylinsija"></p>
 
+        <div class="info">
+            <div class="jj-toggle">
+                Info:<br>
+                <textarea ng-model="lohko.info" style="width: 650px;"></textarea>
+            </div>
+        </div>
+
         <div class="joukkueet">
         <h5>Joukkueet:</h5>
         <div class="jj-toggle">
@@ -75,5 +82,6 @@
                 {{lohko.sijat[2]}}<br>
                 {{lohko.sijat[3]}}<br>
         </div>
+        <textarea ng-model="lohko.selitys" style="width: 650px;"></textarea>
     </div>
 </div>

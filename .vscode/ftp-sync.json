@@ -1,0 +1,16 @@
+{
+    "remotePath": "/httpdocs/Jorin/Turnaus2017/",
+    "host": "keimolankaiku.fi",
+    "username": "zkeimola14129fi",
+    "password": "a$%#952VTI*ql##%",
+    "port": 21,
+    "protocol": "ftp",
+    "uploadOnSave": true,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "ignore": [
+        "\\.vscode",
+        "\\.git"
+    ]
+}

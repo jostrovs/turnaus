@@ -3,7 +3,7 @@
 
 var luoTurnaus = function () {
     let turnaus = new Turnaus();
-    turnaus.pvm = new Date(2017, 0, 5, 0, 0, 0);
+    turnaus.pvm = "5.1.2017";
     turnaus.sarjat.push(luoSarja('Miehet A', 'MA'));
     turnaus.sarjat.push(luoSarja('Miehet B', 'MB'));
     turnaus.sarjat.push(luoSarja('Miehet C', 'MC'));
@@ -11,6 +11,17 @@ var luoTurnaus = function () {
     turnaus.sarjat.push(luoSarja('Naiset B', 'NB'));
     return turnaus;
 };
+
+var luoTurnausS = function(s){
+    let turnaus = new Turnaus();
+    turnaus.pvm = s.pvm;
+    for(let sarja of s.sarjat){
+         turnaus.sarjat.push(luoSarjaS(sarja));
+    }
+    return turnaus;
+};
+
+///////////////////////////////////////////
 
 var luoSarja = function (nimi, lyhenne) {
     var sarja = new Sarja(nimi, lyhenne);
@@ -38,15 +49,51 @@ var luoSarja = function (nimi, lyhenne) {
     return sarja;
 };
 
+var luoSarjaS = function (s) {
+    var sarja = new Sarja(s.nimi, s.lyhenne);
+
+    sarja.info = s.info;
+
+    for(let l of s.alkulohkot){
+        sarja.alkulohkot.push(luoLohkoS(l));
+    }
+    for(let l of s.sijoituslohkot){
+        sarja.alkulohkot.push(luoSijoitusLohkoS(l));
+    }
+
+    return sarja;
+};
+///////////////////////////////////////////////
+
 var luoLohko = function (name, joukkueet, otteluFunktio) {
     var lohko = new Lohko(name, joukkueet);
     lohko.ottelut = otteluFunktio(joukkueet);
     return lohko;
 };
+var luoLohkoS = function (s) {
+    var lohko = new Lohko(s.nimi, s.joukkueet);
+    lohko.ottelut = [];
+    for(let o of s.ottelut){
+        lohko.ottelut.push(new Ottelu(o.koti, o.vieras, o.tuomari, o.tulos));
+    }
+    lohko.info = s.info;
+    return lohko;
+};
+
+///////////////////////////////////////////////
 
 var luoSijoituslohko = function (name, joukkueet, ylinsija) {
     var lohko = new Lohko(name, joukkueet, 0, ylinsija);
     lohko.ottelut = luoValiera(joukkueet);
+    return lohko;
+};
+var luoSijoitusLohkoS = function (s) {
+    var lohko = new Lohko(s.nimi, s.joukkueet, 0, s.ylinsija);
+    lohko.ottelut = [];
+    for(let o of s.ottelut){
+        lohko.ottelut.push(new Ottelu(o.koti, o.vieras, o.tuomari, o.tulos));
+    }
+    lohko.info = s.info;
     return lohko;
 };
 
