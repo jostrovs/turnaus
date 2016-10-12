@@ -77,6 +77,9 @@ var luoLohkoS = function (s) {
         lohko.ottelut.push(new Ottelu(o.koti, o.vieras, o.tuomari, o.tulos));
     }
     lohko.info = s.info;
+
+    lohko.laskeAlkutulokset();
+
     return lohko;
 };
 
@@ -94,6 +97,8 @@ var luoSijoitusLohkoS = function (s) {
         lohko.ottelut.push(new Ottelu(o.koti, o.vieras, o.tuomari, o.tulos));
     }
     lohko.info = s.info;
+    
+    lohko.laskeAlkutulokset();
     return lohko;
 };
 
@@ -118,8 +123,8 @@ var luoRoundRobin = function (joukkueet) {
 
     if (joukkueet.length == 3) {
         ret.push(new Ottelu(joukkueet[0], joukkueet[1], joukkueet[2]));
-        ret.push(new Ottelu(joukkueet[1], joukkueet[2], joukkueet[3]));
-        ret.push(new Ottelu(joukkueet[2], joukkueet[3], joukkueet[0]));
+        ret.push(new Ottelu(joukkueet[1], joukkueet[2], joukkueet[0]));
+        ret.push(new Ottelu(joukkueet[2], joukkueet[0], joukkueet[1]));
     }
 
     if (joukkueet.length == 4) {

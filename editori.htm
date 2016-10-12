@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/jj.css">
+
+
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script-->
+    <script src="js/angular.min.js"></script>
+    <script src="js/notify.min.js"></script>
+    <script src="http://www.keimolankaiku.fi/Jorin/jos/jos.js"></script>
+    
+    <script src="js/turnausEditori2016.js"></script>
+
+    <!-- Omat filet -->
+    <script src="js/jj.js"></script>
+ 
+    <script src="js/classes/sarja.js"></script>
+    <script src="js/classes/lohko.js"></script>
+    <script src="js/classes/joukkue.js"></script>
+    <script src="js/classes/ottelu.js"></script>
+    <script src="js/classes/tulostaulu.js"></script>
+
+    <script src="js/classes/creation.js"></script>
+
+    <title>Turnaus2016</title>
+</head>
+
+<body ng-app="myApp" ng-controller="turnausEditori">
+    <span id="load" class="button" ng-click="load()">Lataa</span>
+    <span id="save" class="button" ng-click="save()">Tallenna</span>
+
+    <ul class="navigaattori">
+        <li class="navitem" ng-repeat="sarja in turnaus.sarjat"><a href="#{{sarja.lyhenne}}">{{sarja.lyhenne}}</a></li>
+    </ul>
+
+    <div class="container-fluid">
+        <h1>Turnaus editori {{turnaus.vuosi}}</h1>
+
+        <div class="jj-toggle">
+
+            Pvm: <input type="text" ng-model="turnaus.pvm"><br>
+            <br> Pelipäivä: {{turnaus.pvm}}
+
+            <div style="margin-top: 15px; margin-bottom: 15px;">
+                <span class="button buttonAdd" ng-click="turnaus.numeroiOttelut()"> Numeroi ottelut uudelleen </span>
+            </div>
+
+            <hr>
+
+            <div ng-repeat="sarja in turnaus.sarjat">
+                <sarja-editori sarja="sarja"></sarja-editori>
+            </div>
+
+        </div>
+
+        <!--<hr> {{asJson}}-->
+
+    </div>
+
+</body>
+
+</html>

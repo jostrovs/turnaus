@@ -9,12 +9,12 @@ var Tulostaulu = function (lohko) {
             let rivi = new Rivi(joukkue);
 
             for (let ottelu of lohko.ottelut) {
-                if (ottelu.koti != joukkue && ottelu.vieras != joukkue) continue;
+                if (ottelu.koti.nimi != joukkue.nimi && ottelu.vieras.nimi != joukkue.nimi) continue;
 
                 var tulos = ottelu.parseTulos();
 
-                if (ottelu.koti == joukkue) rivi.addKoti(tulos);
-                if (ottelu.vieras == joukkue) rivi.addVieras(tulos);
+                if (ottelu.koti.nimi == joukkue.nimi) rivi.addKoti(tulos);
+                if (ottelu.vieras.nimi == joukkue.nimi) rivi.addVieras(tulos);
             }
             rivi.totalErat = rivi.getTotalEraString();
             rivi.totalPisteet = rivi.getTotalPisteString();

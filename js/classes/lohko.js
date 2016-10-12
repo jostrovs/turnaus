@@ -33,6 +33,15 @@ function Lohko(nimi, joukkueet, roundRobin, ylinsija){
 
     this.tulostaulu=new Tulostaulu(this);
 
+    this.laskeAlkutulokset = function(){
+        // Lasketaan tulokset latauksen yhteydessä, jotta tulostaulu saadaan näkymään oikein
+        if(this.roundRobin || this.joukkueet.length === 3 || this.joukkueet.length === 5){
+            this.laskeTulokset();
+        } else {
+            this.laskeValiera();
+        }        
+    };
+
     this.laskeValiera = function(){
         this.sijat = [this.sijat[0], this.sijat[1], this.sijat[2], this.sijat[3]];
         
