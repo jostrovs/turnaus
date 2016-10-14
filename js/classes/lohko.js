@@ -29,9 +29,12 @@ function Lohko(nimi, joukkueet, roundRobin, ylinsija){
     this.laskeTulokset = function(){
         this.tulostaulu = new Tulostaulu(this);
         console.log("Lasken tulokset lohkolle " + this.nimi);
+        this.tulosrivit = this.tulostaulu.rivit;
     };
 
     this.tulostaulu=new Tulostaulu(this);
+
+    this.tulosrivit = [];
 
     this.laskeAlkutulokset = function(){
         // Lasketaan tulokset latauksen yhteydessä, jotta tulostaulu saadaan näkymään oikein
@@ -80,12 +83,12 @@ function Lohko(nimi, joukkueet, roundRobin, ylinsija){
             var t = this.ottelut[2].parseTulos();
             if(t.kotivoitto > 0){
                 // kotivoitto
-                this.sijat[2] = (ylinsija+2).toString() + ". " + this.ottelut[2].koti.getNimi();
-                this.sijat[3] = (ylinsija+3).toString() + ". " + this.ottelut[2].vieras.getNimi();
+                this.sijat[2] = (ylinsija+2).toString() + ". " + this.ottelut[2].koti.nimi;
+                this.sijat[3] = (ylinsija+3).toString() + ". " + this.ottelut[2].vieras.nimi;
             } else {
                 // vierasvoitto
-                this.sijat[2] = (ylinsija+2).toString() + ". " + this.ottelut[2].vieras.getNimi();
-                this.sijat[3] = (ylinsija+3).toString() + ". " + this.ottelut[2].koti.getNimi();
+                this.sijat[2] = (ylinsija+2).toString() + ". " + this.ottelut[2].vieras.nimi;
+                this.sijat[3] = (ylinsija+3).toString() + ". " + this.ottelut[2].koti.nimi;
             }
         }
 
@@ -94,14 +97,15 @@ function Lohko(nimi, joukkueet, roundRobin, ylinsija){
             var t = this.ottelut[3].parseTulos();
             if(t.kotivoitto > 0){
                 // kotivoitto
-                this.sijat[0] = (ylinsija+0).toString() + ". " + this.ottelut[3].koti.getNimi();
-                this.sijat[1] = (ylinsija+1).toString() + ". " + this.ottelut[3].vieras.getNimi();
+                this.sijat[0] = (ylinsija+0).toString() + ". " + this.ottelut[3].koti.nimi;
+                this.sijat[1] = (ylinsija+1).toString() + ". " + this.ottelut[3].vieras.nimi;
             } else {
                 // vierasvoitto
-                this.sijat[0] = (ylinsija+0).toString() + ". " + this.ottelut[3].vieras.getNimi();
-                this.sijat[1] = (ylinsija+1).toString() + ". " + this.ottelut[3].koti.getNimi();
+                this.sijat[0] = (ylinsija+0).toString() + ". " + this.ottelut[3].vieras.nimi;
+                this.sijat[1] = (ylinsija+1).toString() + ". " + this.ottelut[3].koti.nimi;
             }
         }
+        this.tulosrivit = this.sijat;
     };
 
     this.onMuuttunut = function(){

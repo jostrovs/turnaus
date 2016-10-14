@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/vue.css">
+
+	<script src="js/jquery-3.0.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://www.keimolankaiku.fi/Jorin/jos/jos.js"></script>
+	<script src="https://unpkg.com/vue@2.0.2/dist/vue.js"></script>
+
+	<!-- Omat filet -->
+
+	<script src="js/classes/turnaus.js"></script>
+	<script src="js/classes/sarja.js"></script>
+	<script src="js/classes/lohko.js"></script>
+	<script src="js/classes/joukkue.js"></script>
+	<script src="js/classes/ottelu.js"></script>
+	<script src="js/classes/tulostaulu.js"></script>
+
+	<script src="js/classes/creation.js"></script>
+	<script src="js/jj.js"></script>
+
+	<script src="js/vue-components/vue-views.js"></script>
+
+	<script src="js/turnausViewVue2016.js"></script>
+
+
+</head>
+
+<body>
+	<!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+	<div id="app">
+
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#ma">Miehet A</a></li>
+			<li><a data-toggle="tab" href="#mb">Miehet B</a></li>
+			<li><a data-toggle="tab" href="#mc">Miehet C</a></li>
+			<li><a data-toggle="tab" href="#na">Naiset A</a></li>
+			<li><a data-toggle="tab" href="#nb">Naiset B</a></li>
+		</ul>
+
+		<div class="tab-content">
+     		<div v-if="alertShown" class="alert alert-success alert-dismissible" role="alert" style="position: fixed">{{alertText}}</div>
+			<div id="ma" class="tab-pane fade in active">
+				<vue-sarja :sarja="turnaus.sarjat[0]"></vue-sarja>
+			</div>
+			<div id="mb" class="tab-pane fade">
+				<vue-sarja :sarja="turnaus.sarjat[1]"></vue-sarja>
+			</div>
+			<div id="mc" class="tab-pane fade">
+				<vue-sarja :sarja="turnaus.sarjat[2]"></vue-sarja>
+			</div>
+			<div id="na" class="tab-pane fade">
+				<vue-sarja :sarja="turnaus.sarjat[3]"></vue-sarja>
+			</div>
+			<div id="nb" class="tab-pane fade">
+				<vue-sarja :sarja="turnaus.sarjat[4]"></vue-sarja>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+
+</html>

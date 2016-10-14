@@ -9,8 +9,9 @@ app.controller('turnausEditori', function($timeout, $scope) {
 
     $scope.save = function(){
         let s = JSON.stringify($scope.turnaus);
-        josSaveJson(JOS_TURNAUS_2017, s);
-        $("#save").notify("Talletettu.", {autoHideDelay: 2000, gap: 4, className: 'success'});
+        josSaveJson(JOS_TURNAUS_2017, s, function(){
+            $("#save").notify("Talletettu.", {autoHideDelay: 2000, gap: 4, className: 'success'});
+        });
     };
 
     $scope.load = function(){
@@ -97,17 +98,3 @@ app.controller('turnausEditori', function($timeout, $scope) {
     };
 });
 
-
-// Turnaus
-var Turnaus = function(){
-    this.pvm = "5.1.2017";
-    this.vuosi = 2017;
-
-    this.sarjat = [];
-
-    this.numeroiOttelut = function(){
-        // Numeroidaan kaikki ottelut uudelleen
-        let no = 1;
-        for(let sarja of this.sarjat) no = sarja.numeroiOttelut(no);
-    }
-};

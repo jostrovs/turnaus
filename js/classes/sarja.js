@@ -4,6 +4,7 @@ var Sarja = function (nimi, lyhenne) {
     this.nimi = nimi;
     this.lyhenne = lyhenne;
     this.info = "";
+    this.pelipaikat = "Missä sattuu";
 
     this.joukkueet = function () {
         var ret = [];

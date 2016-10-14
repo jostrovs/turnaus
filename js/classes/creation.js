@@ -78,7 +78,9 @@ var luoLohkoS = function (s) {
     }
     lohko.info = s.info;
 
-    lohko.laskeAlkutulokset();
+    lohko.tulosrivit = s.tulosrivit;
+    lohko.roundRobin = s.roundRobin;
+    //lohko.laskeAlkutulokset();
 
     return lohko;
 };
@@ -98,7 +100,7 @@ var luoSijoitusLohkoS = function (s) {
     }
     lohko.info = s.info;
     
-    lohko.laskeAlkutulokset();
+    //lohko.laskeAlkutulokset();
     return lohko;
 };
 
