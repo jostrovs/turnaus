@@ -15,8 +15,9 @@ $(document).ready(function () {
             save: function(){
                 let cbThis=this;
                 let s = JSON.stringify(this.turnaus);
+                console.log("Saving: " + this.turnaus.sarjat[0].pelipaikat);
                 josSaveJson(JOS_TURNAUS_2017, s, function(){
-                    cbThis.showAlert("Turnaus ladattu.", 2000);
+                    cbThis.showAlert("Turnaus talletettu.", 2000);
                 });
             },
             showAlert: function(message, timeout){
@@ -36,6 +37,7 @@ $(document).ready(function () {
                     let s = JSON.parse(d);
                     //let s = luoTurnaus();
                     cbThis.turnaus = luoTurnausS(s);
+                    console.log("Loading: " + cbThis.turnaus.sarjat[0].pelipaikat);
                     cbThis.showAlert("Turnaus ladattu.", 2000);
                 });
             }

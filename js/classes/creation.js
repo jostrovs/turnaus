@@ -53,6 +53,7 @@ var luoSarjaS = function (s) {
     var sarja = new Sarja(s.nimi, s.lyhenne);
 
     sarja.info = s.info;
+    sarja.pelipaikat = s.pelipaikat;
 
     for(let l of s.alkulohkot){
         sarja.alkulohkot.push(luoLohkoS(l));
@@ -80,6 +81,7 @@ var luoLohkoS = function (s) {
 
     lohko.tulosrivit = s.tulosrivit;
     lohko.roundRobin = s.roundRobin;
+    lohko.tulostaulu.selitys = s.tulostaulu.selitys;
     //lohko.laskeAlkutulokset();
 
     return lohko;

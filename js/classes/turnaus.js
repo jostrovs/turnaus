@@ -1,7 +1,7 @@
 
 // Turnaus
 var Turnaus = function(){
-    this.pvm = "5.1.2017";
+    this.pvm = "6.1.2017";
     this.vuosi = 2017;
 
     this.sarjat = [];

@@ -32,7 +32,7 @@ Vue.component('vue-box', {
                             </h4>
                           </div>
                           <div :id="collapseId" class="panel-collapse collapse in">
-                            <div class="panel-body">{{teksti}}</div>
+                            <div class="panel-body" v-html="teksti"></div>
                           </div>
               
               `,
@@ -45,14 +45,28 @@ Vue.component('vue-box', {
               }
 });
 
+Vue.component('vue-formatted-text', {
+              props: ['text'],
+              data: function () {
+                  return {
+                      lines: this.text.split("<br>")
+                  }
+              },
+              template: `
+                  <p v-for="line in lines">{{line}}</p> 
+`
+
+});
+
 Vue.component('vue-sarja', {
               props: ['sarja'],
               template: `
                   <div> 
-                      <h1>{{ sarja.nimi }}</h1> 
-                      <div class="info">{{sarja.info}}</div>
+                      <h1>XXVII Keimola Lentis</h1>
+                      <h2>{{ sarja.nimi }}-sarja</h2> 
+                      <div class="info" v-html="sarja.info"></div>
                       <vue-joukkuelista :joukkueet="sarja.joukkueet()"></vue-joukkuelista>
-                      <vue-box otsikko="Pelipaikat:" teksti="Pelipaikat on mitä sattuu"></vue-box>
+                      <vue-box otsikko="Pelipaikat:" :teksti="sarja.pelipaikat"></vue-box>
                       <vue-lohko v-for="lohko in sarja.alkulohkot" :lohko="lohko"></vue-lohko>
                       <vue-lohko v-for="lohko in sarja.sijoituslohkot" :lohko="lohko"></vue-lohko>
                   </div>`
@@ -75,7 +89,7 @@ Vue.component('vue-lohko', {
                              </div>
                              <div :id="collapseId" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <p>{{lohko.info}}</p>
+                                    <p v-html="lohko.info"></p>
                                     <p>Joukkueet:<br>
                                         <template v-for="joukkue in lohko.joukkueet">
                                             {{joukkue.nimi }}
@@ -87,6 +101,10 @@ Vue.component('vue-lohko', {
                                     <p>Ottelut:<br>
                                         <vue-ottelut :ottelut="lohko.ottelut"></vue-ottelut>
                                     </p>
+
+                                    <p>
+                                        <vue-tulostaulu-rr :lohko="lohko"></vue-tulostaulu-rr>
+                                    </p>                                    
                                 </div>
                              </div>                             
                          </div>`
@@ -110,4 +128,43 @@ Vue.component('vue-ottelut', {
                                  <td>{{ottelu.tuomari.lyhenne}}</td>
                              </tr>
                          </table>`
+});
+
+Vue.component('vue-tulostaulu-rr', {
+              props: ['lohko'],
+              computed: {
+                  sorted: function(){
+                      return this.lohko.tulosrivit.sort(function(a,b) {return a.sija-b.sija;} );
+                  }
+              },
+              methods: {
+                  isShown: function() {
+                      return this.lohko.tulosrivit.length > 0;
+                  }
+              },
+              template: `
+                    <div v-if="isShown()">
+                        <p>Tulostaulu:<br>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <th>Sija</th>
+                                    <th>Joukkue</th>
+                                    <!--<th>Pelattu</th>-->
+                                    <th>Erät</th>
+                                    <th>Piste-ero</th>
+                                </tr>
+                                <tr v-for="rivi in sorted">
+                                    <td>{{rivi.sija}}</td>
+                                    <td>{{rivi.joukkue.lyhenne}}</td>
+                                    <!--<td>{{rivi.ottelut}}</td>-->
+                                    <!--<td>{{rivi.eraplus}}</td>-->
+                                    <!--<td>{{rivi.pisteet}}</td>-->
+                                    <td>{{rivi.totalErat}}</td>
+                                    <td>{{rivi.totalPisteet}}</td>
+                                </tr>
+
+                            </table>
+                            <p v-html="lohko.tulostaulu.selitys"></p>
+                        </p>
+                    </div>`
 });

@@ -27,9 +27,11 @@ function Lohko(nimi, joukkueet, roundRobin, ylinsija){
     };
 
     this.laskeTulokset = function(){
+        let vanhaSelitys = this.tulostaulu.selitys;
         this.tulostaulu = new Tulostaulu(this);
         console.log("Lasken tulokset lohkolle " + this.nimi);
         this.tulosrivit = this.tulostaulu.rivit;
+        this.tulostaulu.selitys = vanhaSelitys;
     };
 
     this.tulostaulu=new Tulostaulu(this);

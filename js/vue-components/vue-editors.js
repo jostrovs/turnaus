@@ -17,6 +17,25 @@ Vue.component('vue-input', {
                     }
                 },
 });
+Vue.component('vue-input-area', {
+                template: `
+                    <div class="form-group">
+                        <label :for="randomId">{{ label }}:</label>
+                        <textarea :id="randomId" :value="value" @input="onInput" class="form-control"></textarea>
+                    </div>
+                `,
+                props: ['value', 'label'],
+                data: function () {
+                    return {
+                        randomId: this._uid
+                    }
+                },
+                methods: {
+                    onInput: function (event) {
+                        this.$emit('input', event.target.value)
+                    }
+                },
+});
 Vue.component('vue-joukkuelista', {
               props: ['joukkueet'],
               template: `
@@ -69,8 +88,8 @@ Vue.component('vue-sarja', {
               template: `
                   <div> 
                       <h1>{{ sarja.nimi }}</h1> 
-                      <vue-input label="Info" v-model="sarja.info"></vue-input>
-                      <vue-input label="Pelipaikat" v-model="sarja.pelipaikat"></vue-input>
+                      <vue-input-area label="Info" v-model="sarja.info"></vue-input-area>
+                      <vue-input-area label="Pelipaikat" v-model="sarja.pelipaikat"></vue-input-area>
                       <vue-joukkuelista :joukkueet="sarja.joukkueet()"></vue-joukkuelista>
                       <vue-lohko v-for="lohko in sarja.alkulohkot" :lohko="lohko"></vue-lohko>
                       <vue-lohko v-for="lohko in sarja.sijoituslohkot" :lohko="lohko"></vue-lohko>
@@ -94,11 +113,13 @@ Vue.component('vue-lohko', {
                              </div>
                              <div :id="collapseId" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <p>{{lohko.info}}</p>
-                                        <div class="btn-group">
-                                            <button @click="lohko.addJoukkue()" type="button" class="btn btn-primary">Lisää joukkue</button>
-                                            <button @click="lohko.popJoukkue()" type="button" class="btn btn-danger">Poista joukkue</button>
-                                        </div>                                        
+                                    <p>
+                                        <vue-input-area label="Info" v-model="lohko.info"></vue-input>
+                                    </p>
+                                    <div class="btn-group">
+                                        <button @click="lohko.addJoukkue()" type="button" class="btn btn-primary">Lisää joukkue</button>
+                                        <button @click="lohko.popJoukkue()" type="button" class="btn btn-danger">Poista joukkue</button>
+                                    </div>
                                     <p><h3>Joukkueet:</h3>
                                         <template v-for="joukkue in lohko.joukkueet">
                                             <input v-model="joukkue.nimi" class="form-control kapea-editori">
@@ -188,6 +209,6 @@ Vue.component('vue-tulostaulu-rr', {
                             </tr>
 
                         </table>
-                        <textarea v-model="lohko.tulostaulu.selitys" style="width: 650px;"></textarea>
+                        <textarea v-model="lohko.tulostaulu.selitys" style="width: 100%;"></textarea>
                     </div>`
 });
