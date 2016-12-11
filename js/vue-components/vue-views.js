@@ -81,33 +81,39 @@ Vue.component('vue-lohko', {
                       collapseHref: "#" + this._uid.toString()
                   }
               },
-              template: `<div class="panel panel-default"> 
-                             <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" :href="collapseHref">{{ lohko.nimi }}</a>
-                                </h4>
-                             </div>
-                             <div :id="collapseId" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <p v-html="lohko.info"></p>
-                                    <p>Joukkueet:<br>
-                                        <template v-for="joukkue in lohko.joukkueet">
-                                            {{joukkue.nimi }}
-                                            ({{joukkue.lyhenne}})
-                                            <br>
-                                        </template>
-                                    </p>
-
-                                    <p>Ottelut:<br>
-                                        <vue-ottelut :ottelut="lohko.ottelut"></vue-ottelut>
-                                    </p>
-
-                                    <p>
-                                        <vue-tulostaulu-rr :lohko="lohko"></vue-tulostaulu-rr>
-                                    </p>                                    
+              template: `<div>
+                            <div class="panel panel-default" style="page-break-before: always"> 
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" :href="collapseHref">{{ lohko.nimi }}</a>
+                                    </h4>
                                 </div>
-                             </div>                             
-                         </div>`
+                                <div :id="collapseId" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <p v-html="lohko.info"></p>
+                                        <p>Joukkueet:<br>
+                                            <template v-for="joukkue in lohko.joukkueet">
+                                                {{joukkue.nimi }}
+                                                ({{joukkue.lyhenne}})
+                                                <br>
+                                            </template>
+                                        </p>
+
+                                        <p>Ottelut:<br>
+                                            <vue-ottelut :ottelut="lohko.ottelut"></vue-ottelut>
+                                        </p>
+
+                                        <p>
+                                            <vue-tulostaulu-rr :lohko="lohko"></vue-tulostaulu-rr>
+                                        </p>                                    
+                                    </div>
+                                </div>                             
+                            </div>
+                            <div v-if="lohko.print_info" class="panel panel-default print-only">
+                                <p v-html="lohko.print_info"></p>
+                            </div>
+                        </div>`
+
 });
 
 Vue.component('vue-ottelut', {

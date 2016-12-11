@@ -106,12 +106,12 @@ Vue.component('vue-lohko', {
                   }
               },
               template: `<div class="panel panel-default"> 
-                             <div class="panel-heading">
+                            <div class="panel-heading">
                                 <h2 class="panel-title">
                                     <a data-toggle="collapse" :href="collapseHref">{{ lohko.nimi }}</a>
                                 </h2>
-                             </div>
-                             <div :id="collapseId" class="panel-collapse collapse">
+                            </div>
+                            <div :id="collapseId" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <p>
                                         <vue-input-area label="Info" v-model="lohko.info"></vue-input>
@@ -147,8 +147,13 @@ Vue.component('vue-lohko', {
                                         <vue-tulostaulu-rr :lohko="lohko"></vue-tulostaulu-rr>
                                     </p>
                                 </div>
-                             </div>                             
-                         </div>`
+                                <div>
+                                    <p>
+                                        <vue-input-area label="Print info" v-model="lohko.print_info"></vue-input>
+                                    </p>
+                                </div>
+                            <div>
+                        </div>`
 });
 
 Vue.component('vue-ottelut', {

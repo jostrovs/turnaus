@@ -4,6 +4,7 @@ function Lohko(nimi, joukkueet, roundRobin, ylinsija){
     this.nimi = nimi;
     this.id = "lohko" + nimi;
     this.info = "";
+    this.print_info = "";   // Tämä on _VAIN_ tulosteella, tulee lohkon alapuolelle, ja tarkoitus on kertoa, miten pelataan seuraavissa lohkoissa ym.
 
     this.selitys = ""; // Sijoituslohkon sijoitusten selittelyä. Alkulohkoissa on omansa
 

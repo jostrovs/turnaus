@@ -78,6 +78,8 @@ var luoLohkoS = function (s) {
         lohko.ottelut.push(new Ottelu(o.koti, o.vieras, o.tuomari, o.tulos));
     }
     lohko.info = s.info;
+    lohko.print_info = s.print_info;
+    console.log("Print info: " + s.print_info);
 
     lohko.tulosrivit = s.tulosrivit;
     lohko.roundRobin = s.roundRobin;
@@ -101,6 +103,7 @@ var luoSijoitusLohkoS = function (s) {
         lohko.ottelut.push(new Ottelu(o.koti, o.vieras, o.tuomari, o.tulos));
     }
     lohko.info = s.info;
+    lohko.print_info = s.print_info;
     
     //lohko.laskeAlkutulokset();
     return lohko;
