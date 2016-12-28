@@ -39,6 +39,13 @@ function Lohko(nimi, joukkueet, roundRobin, ylinsija){
 
     this.tulosrivit = [];
 
+    this.onkoTuloksia = function(){
+        for(let ott of this.ottelut){
+            if(ott.tulos) return true;
+        }
+        return false;
+    };
+
     this.laskeAlkutulokset = function(){
         // Lasketaan tulokset latauksen yhteydessä, jotta tulostaulu saadaan näkymään oikein
         if(this.roundRobin || this.joukkueet.length === 3 || this.joukkueet.length === 5){

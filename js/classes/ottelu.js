@@ -7,6 +7,7 @@ var Ottelu = function(koti, vieras, tuomari, tulos){
     this.koti = koti;
     this.vieras = vieras;
     this.tuomari = tuomari;
+    this.tuomariEditable = false;
     this.tulos = tulos;
     this.onChange = function(){
         let t = this.tulos.toString();
@@ -24,6 +25,32 @@ var Ottelu = function(koti, vieras, tuomari, tulos){
     };
     this.onMuuttunut = function(){
         return this.viimeksiLuettuTulos !== this.tulos;
+    };
+
+    this.getKoti = function(){
+        if(!this.koti) return "";
+        if(!this.koti.lyhenne){
+            if(this.koti.nimi) return this.koti.nimi;
+            return this.koti;
+        }
+        return this.koti.lyhenne;
+    };
+    this.getVieras = function(){
+        if(!this.vieras) return "";
+        if(!this.vieras.lyhenne){
+            if(this.vieras.nimi) return this.vieras.nimi;        
+            return this.vieras;
+        }
+        return this.vieras.lyhenne;
+    };
+    this.getTuomari = function(){
+        if(!this.tuomari) return "";
+        if(this.tuomariEditable) return this.tuomari;
+        if(!this.tuomari.lyhenne){
+            if(this.tuomari.nimi) return this.tuomari.nimi;
+            return this.tuomari;
+        }
+        return this.tuomari.lyhenne;
     };
 
     this.parseTulos = function (markRead=true) { // MarkRead: merkitäänkö ottelun tulos luetuksi

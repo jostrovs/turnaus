@@ -15,6 +15,7 @@ var luoTurnaus = function () {
 var luoTurnausS = function(s){
     let turnaus = new Turnaus();
     turnaus.pvm = s.pvm;
+    turnaus.sarjat=[];
     for(let sarja of s.sarjat){
          turnaus.sarjat.push(luoSarjaS(sarja));
     }
@@ -52,6 +53,7 @@ var luoSarja = function (nimi, lyhenne) {
 var luoSarjaS = function (s) {
     var sarja = new Sarja(s.nimi, s.lyhenne);
 
+    sarja.nimi = s.nimi;
     sarja.info = s.info;
     sarja.pelipaikat = s.pelipaikat;
 
@@ -59,7 +61,7 @@ var luoSarjaS = function (s) {
         sarja.alkulohkot.push(luoLohkoS(l));
     }
     for(let l of s.sijoituslohkot){
-        sarja.alkulohkot.push(luoSijoitusLohkoS(l));
+        sarja.sijoituslohkot.push(luoSijoitusLohkoS(l));
     }
 
     return sarja;
@@ -75,7 +77,9 @@ var luoLohkoS = function (s) {
     var lohko = new Lohko(s.nimi, s.joukkueet);
     lohko.ottelut = [];
     for(let o of s.ottelut){
-        lohko.ottelut.push(new Ottelu(o.koti, o.vieras, o.tuomari, o.tulos));
+        let ott = new Ottelu(o.koti, o.vieras, o.tuomari, o.tulos);
+        ott.tuomariEditable = o.tuomariEditable;
+        lohko.ottelut.push(ott);
     }
     lohko.info = s.info;
     lohko.print_info = s.print_info;
@@ -100,7 +104,9 @@ var luoSijoitusLohkoS = function (s) {
     var lohko = new Lohko(s.nimi, s.joukkueet, 0, s.ylinsija);
     lohko.ottelut = [];
     for(let o of s.ottelut){
-        lohko.ottelut.push(new Ottelu(o.koti, o.vieras, o.tuomari, o.tulos));
+        let ott = new Ottelu(o.koti, o.vieras, o.tuomari, o.tulos);
+        ott.tuomariEditable = o.tuomariEditable;
+        lohko.ottelut.push(ott);
     }
     lohko.info = s.info;
     lohko.print_info = s.print_info;
@@ -114,19 +120,28 @@ var luoValiera = function(joukkueet){
 
     var ret = [];
 
-    ret.push(new Ottelu(joukkueet[0], joukkueet[1], new Joukkue("", "Toisen välieräottelun joukkueet")));
-    ret.push(new Ottelu(joukkueet[2], joukkueet[3], new Joukkue("", "Edellisen ottelun häviäjä")));
-    ret.push(new Ottelu(new Joukkue("", "Ensimmäisen välierän häviäjä"), new Joukkue("", "Toisen välierän häviäjä"), new Joukkue("", "Edellisen ottelun voittaja")));
-    ret.push(new Ottelu(new Joukkue("", "Ensimmäisen välierän voittaja"), new Joukkue("", "Toisen välierän voittaja"), new Joukkue("", "Edellisen ottelun häviäjä")));
+    let ott1 = new Ottelu(joukkueet[0], joukkueet[1], new Joukkue("", "Toisen välieräottelun joukkueet"));
+    let ott2 = new Ottelu(joukkueet[2], joukkueet[3], new Joukkue("", "Edellisen ottelun häviäjä"));
+    let ott3 = new Ottelu(new Joukkue("", "Ensimmäisen välierän häviäjä"), new Joukkue("", "Toisen välierän häviäjä"), new Joukkue("", "Edellisen ottelun voittaja"));
+    let ott4 = new Ottelu(new Joukkue("", "Ensimmäisen välierän voittaja"), new Joukkue("", "Toisen välierän voittaja"), new Joukkue("", "Edellisen ottelun häviäjä"));
+
+    ret.push(ott1);
+    ret.push(ott2);
+    ret.push(ott3);
+    ret.push(ott4);
 
     return ret;
 };
 
 var luoRoundRobin = function (joukkueet) {
-    if (joukkueet.length < 3) throw "Ei voi luoda round robinia, kun joukkueita on alle 3.";
+    if (joukkueet.length < 2) throw "Ei voi luoda round robinia, kun joukkueita on alle 2.";
     if (joukkueet.length > 5) throw "Ei voi luoda round robinia, kun joukkueita on yli 5.";
 
     var ret = [];
+
+    if (joukkueet.length == 2) {
+        ret.push(new Ottelu(joukkueet[0], joukkueet[1], ""));
+    }
 
     if (joukkueet.length == 3) {
         ret.push(new Ottelu(joukkueet[0], joukkueet[1], joukkueet[2]));

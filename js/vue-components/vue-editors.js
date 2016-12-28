@@ -87,10 +87,19 @@ Vue.component('vue-sarja', {
               props: ['sarja'],
               template: `
                   <div> 
-                      <h1>{{ sarja.nimi }}</h1> 
+                      <h1>{{sarja.nimi}}</h1> 
+                      <vue-input label="Sarjan nimi" v-model="sarja.nimi"></vue-input>
                       <vue-input-area label="Info" v-model="sarja.info"></vue-input-area>
                       <vue-input-area label="Pelipaikat" v-model="sarja.pelipaikat"></vue-input-area>
                       <vue-joukkuelista :joukkueet="sarja.joukkueet()"></vue-joukkuelista>
+                      
+                      <div class="btn-group">
+                          <button @click="sarja.addAlkuLohko()" type="button" class="btn btn-primary">Lisää alkulohko</button>
+                          <button @click="sarja.popAlkuLohko()" type="button" class="btn btn-danger">Poista alkulohko</button>
+                          <button @click="sarja.addSijoitusLohko()" type="button" class="btn btn-primary">Lisää sijoituslohko</button>
+                          <button @click="sarja.popSijoitusLohko()" type="button" class="btn btn-danger">Poista sijoituslohko</button>
+                      </div>
+
                       <vue-lohko v-for="lohko in sarja.alkulohkot" :lohko="lohko"></vue-lohko>
                       <vue-lohko v-for="lohko in sarja.sijoituslohkot" :lohko="lohko"></vue-lohko>
                   </div>`
@@ -113,6 +122,7 @@ Vue.component('vue-lohko', {
                             </div>
                             <div :id="collapseId" class="panel-collapse collapse">
                                 <div class="panel-body">
+                                    <vue-input label="Lohkon nimi" v-model="lohko.nimi"></vue-input>
                                     <p>
                                         <vue-input-area label="Info" v-model="lohko.info"></vue-input>
                                     </p>
@@ -138,7 +148,6 @@ Vue.component('vue-lohko', {
                                             <button @click="lohko.poistaOttelut()" type="button" class="btn btn-danger">Poista ottelut</button>
                                             <button @click="lohko.arvoYksiTulos()" type="button" class="btn btn-default">Arvo yksi</button>
                                             <button @click="lohko.arvoKaikkiTulokset()" type="button" class="btn btn-default">Arvo kaikki</button>
-
                                         </div>                                        
                                         <vue-ottelut :ottelut="lohko.ottelut"></vue-ottelut>
                                     </p>
@@ -173,12 +182,14 @@ Vue.component('vue-ottelut', {
                              </tr>
                              <tr v-for="ottelu in ottelutSorted">
                                  <td><input type="number" v-model="ottelu.no" class="form-control number-input"></td>                             
-                                 <td>{{ottelu.koti.lyhenne}}</td>                             
-                                 <td>{{ottelu.vieras.lyhenne}}</td>                             
+                                 <td>{{ottelu.getKoti()}}</td>                             
+                                 <td>{{ottelu.getVieras()}}</td>                             
                                  <td><input class="form-control kapea-editori" v-model="ottelu.tulos" @input="ottelu.onChange()">
                                      <span class="label label-warning" v-show="ottelu.onMuuttunut()">Muuttunut</span>
                                  </td>                             
-                                 <td>{{ottelu.tuomari.lyhenne}}</td>
+                                 <td v-if="ottelu.tuomariEditable"><input class="form-control kapea-editori" v-model="ottelu.tuomari"></td>
+                                 <td v-if="!ottelu.tuomariEditable">{{ottelu.getTuomari()}}</td>
+                                 <td><label><input type="checkbox" v-model="ottelu.tuomariEditable">Tuomari editable</label></td>
                              </tr>
                          </table>`
 });

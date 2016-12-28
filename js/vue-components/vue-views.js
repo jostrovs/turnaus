@@ -4,11 +4,11 @@ Vue.component('vue-joukkuelista', {
                       <div class="panel panel-default joukkuelista">
                           <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" :href="collapseHref">Joukkueet:</a>
+                                <a data-toggle="collapse" :href="collapseHref">Joukkueet ({{joukkueet.length}}):</a> 
                             </h4>
                           </div>
                           <div :id="collapseId" class="panel-collapse collapse in">
-                            <div v-for="joukkue in joukkueet" class="panel-body">{{joukkue.nimi}} ({{joukkue.lyhenne}})</div>
+                            <div v-for="joukkue in joukkueet" class="panel-body">{{joukkue.nimi}} <span v-if="joukkue.lyhenne">({{joukkue.lyhenne}})</span></div>
                             <!--div class="panel-footer">Panel Footer</div-->
                           </div>
               
@@ -85,7 +85,7 @@ Vue.component('vue-lohko', {
                             <div class="panel panel-default" style="page-break-before: always"> 
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" :href="collapseHref">{{ lohko.nimi }}</a>
+                                        <a data-toggle="collapse" :href="collapseHref">{{ lohko.nimi }} <span class="no-print" style="float: right; font-size: 10px; color: #777;">avaa/sulje</span></a>
                                     </h4>
                                 </div>
                                 <div :id="collapseId" class="panel-collapse collapse in">
@@ -94,7 +94,7 @@ Vue.component('vue-lohko', {
                                         <p>Joukkueet:<br>
                                             <template v-for="joukkue in lohko.joukkueet">
                                                 {{joukkue.nimi }}
-                                                ({{joukkue.lyhenne}})
+                                                <span v-if="joukkue.lyhenne">({{joukkue.lyhenne}})</span>
                                                 <br>
                                             </template>
                                         </p>
@@ -104,7 +104,7 @@ Vue.component('vue-lohko', {
                                         </p>
 
                                         <p>
-                                            <vue-tulostaulu-rr :lohko="lohko"></vue-tulostaulu-rr>
+                                            <vue-tulostaulu-rr v-if="lohko.onkoTuloksia()" :lohko="lohko"></vue-tulostaulu-rr>
                                         </p>                                    
                                     </div>
                                 </div>                             
@@ -123,15 +123,15 @@ Vue.component('vue-ottelut', {
                                  <th>No</th>
                                  <th>Koti</th>
                                  <th>Vieras</th>
-                                 <th>Tulos</th>
+                                 <!--th>Tulos</th-->
                                  <th>Tuomari</th>
                              </tr>
                              <tr v-for="ottelu in ottelut">
                                  <td>{{ottelu.no}}</td>                             
-                                 <td>{{ottelu.koti.lyhenne}}</td>                             
-                                 <td>{{ottelu.vieras.lyhenne}}</td>                             
-                                 <td>{{ottelu.tulos}}</td>                             
-                                 <td>{{ottelu.tuomari.lyhenne}}</td>
+                                 <td>{{ottelu.getKoti()}}</td>                             
+                                 <td>{{ottelu.getVieras()}}</td>                             
+                                 <!--td>{{ottelu.tulos}}</td-->                             
+                                 <td>{{ottelu.getTuomari()}}</td>
                              </tr>
                          </table>`
 });
